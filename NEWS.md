@@ -1,3 +1,12 @@
+# unpivotr 0.1.1
+
+* Fixed breakages introduced by dplyr 0.6.
+
+# unpivotr 0.1.0
+
+* Moved images from `inst/extdata` to `vignettes`.
+
+
 # unpivotr 0.1.0
 
 * Bumped version to match tidyxl, which is now more mature.

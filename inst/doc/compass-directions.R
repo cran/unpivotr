@@ -26,7 +26,8 @@ col_headers
 datacells <-
   cells %>%
   filter(row >= 3, col >= 3, !is.na(character)) %>%
-  select(row, col, value = as.integer(character))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 head(datacells)
 
 ## ---- echo = TRUE--------------------------------------------------------
@@ -63,7 +64,8 @@ col_headers
 datacells <-
   cells %>%
   filter(row >= 3, col >= 3, !is.na(character)) %>%
-  select(row, col, value = as.integer(character))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 datacells
 
 ## ---- echo = TRUE--------------------------------------------------------
@@ -100,7 +102,8 @@ col_headers
 datacells <-
   cells %>%
   filter(row <= 20, col <= 4, !is.na(character)) %>%
-  select(row, col, value = as.integer(character))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 datacells
 
 ## ---- echo = TRUE--------------------------------------------------------
@@ -137,7 +140,8 @@ col_headers
 datacells <-
   cells %>%
   filter(row <= 20, col <= 4, !is.na(character)) %>%
-  select(row, col, value = as.integer(character))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 datacells
 
 ## ---- echo = TRUE--------------------------------------------------------
@@ -179,7 +183,8 @@ col_headers
 datacells <-
   cells %>%
   filter(row >= 3, col >= 3, !is.na(character)) %>%
-  select(row, col, value = as.integer(character))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 datacells
 
 ## ---- echo = TRUE--------------------------------------------------------
@@ -216,7 +221,8 @@ col_headers
 datacells <-
   cells %>%
   filter(row <= 10, col <= 6, !is.na(character)) %>%
-  select(row, col, value = as.integer(character))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 datacells
 
 ## ---- echo = TRUE--------------------------------------------------------
@@ -260,7 +266,8 @@ datacells <-
   cells %>%
   filter(row >= 4, col >= 4, !is.na(content)) %>%
   mutate(content = ifelse(is.na(character), content, NA)) %>%
-  select(row, col, value = as.integer(content))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 datacells
 
 ## ---- echo = TRUE--------------------------------------------------------
@@ -316,7 +323,8 @@ datacells <-
   cells %>%
   filter(row <= 13, col <= 9, !is.na(content)) %>%
   mutate(content = ifelse(is.na(character), content, NA)) %>%
-  select(row, col, value = as.integer(content))
+  mutate(value = as.integer(character)) %>%
+  select(row, col, value)
 datacells
 
 ## ---- echo = TRUE--------------------------------------------------------

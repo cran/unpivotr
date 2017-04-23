@@ -1,6 +1,6 @@
 Package: unpivotr
 Title: Unpivot Complex and Irregular Data Layouts
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Duncan", "Garmonsway", email = "nacnudus@gmail.com", role = c("aut", "cre"))
     )
@@ -17,12 +17,12 @@ Imports: methods, lazyeval, magrittr, data.table (>= 1.9.7), dplyr,
         dtplyr, purrr, tidyr, tibble
 URL: https://github.com/nacnudus/unpivotr
 BugReports: https://github.com/nacnudus/unpivotr/issues
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.0.1.9000
 Suggests: knitr, rmarkdown, tidyxl, stringr, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2017-01-30 18:09:48 UTC; nacnudus
+Packaged: 2017-04-23 14:18:49 UTC; nacnudus
 Author: Duncan Garmonsway [aut, cre]
 Maintainer: Duncan Garmonsway <nacnudus@gmail.com>
 Repository: CRAN
-Date/Publication: 2017-01-31 08:14:59
+Date/Publication: 2017-04-23 14:36:37 UTC

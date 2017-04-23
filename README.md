@@ -3,11 +3,16 @@
 unpivotr
 ========
 
-[![Travis-CI Build Status](https://travis-ci.org/nacnudus/unpivotr.svg?branch=master)](https://travis-ci.org/nacnudus/unpivotr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/nacnudus/unpivotr?branch=master&svg=true)](https://ci.appveyor.com/project/nacnudus/unpivotr) ![Cran Status](http://www.r-pkg.org/badges/version/unpivotr) ![Cran Downloads](https://cranlogs.r-pkg.org/badges/unpivotr) [![codecov](https://codecov.io/github/nacnudus/unpivotr/coverage.svg?branch=master)](https://codecov.io/gh/nacnudus/unpivotr)
+[![Travis-CI Build Status](https://travis-ci.org/nacnudus/unpivotr.svg?branch=master)](https://travis-ci.org/nacnudus/unpivotr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/nacnudus/unpivotr?branch=master&svg=true)](https://ci.appveyor.com/project/nacnudus/unpivotr) [![Cran Status](http://www.r-pkg.org/badges/version/unpivotr)](https://cran.r-project.org/web/packages/unpivotr/index.html) [![Cran Downloads](https://cranlogs.r-pkg.org/badges/unpivotr)](https://www.r-pkg.org/pkg/unpivotr) [![codecov](https://codecov.io/github/nacnudus/unpivotr/coverage.svg?branch=master)](https://codecov.io/gh/nacnudus/unpivotr)
 
 [unpivotr](https://github.com/nacnudus/unpivotr) provides tools for converting data from complex or irregular layouts to a columnar structure. For example, tables with multi-level column or row headers, or spreadsheets. Header and data cells are selected by their contents, position and formatting, and are associated with one other by their relative positions.
 
 Excel (.xlsx) files can be prepared for [unpivotr](https://github.com/nacnudus/unpivotr) via the [tidyxl](https://github.com/nacnudus/tidyxl) package.
+
+Mailing list
+------------
+
+For bugs and/or issues, create a new issue on [GitHub](https://github.com/nacnudus/tidyxl/issues) For other questions or comments, please subscribe to the [tidyxl-devel mailing list](https://groups.google.com/forum/#!forum/tidyxl-devel). You must be a member to post messages, but anyone can read the archived discussions.
 
 Installation
 ------------
@@ -225,13 +230,13 @@ Compass directions
 
 The concept of compass directions is compactly expressed by this triptych.
 
-![](./inst/extdata/compass-compact.png)
+![](./vignettes/compass-compact.png)
 
 The most useful ones are more fully explained here.
 
-![](./inst/extdata/compass-common.png)
+![](./vignettes/compass-common.png)
 
-A complete explanation is in 'poster' form [here](./inst/extdata/compass-complete.svg).
+A complete explanation is in 'poster' form [here](./vignettes/compass-complete.svg).
 
 Philosophy
 ----------

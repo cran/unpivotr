@@ -1,3 +1,7 @@
+## ---- out.width = "850px"------------------------------------------------
+knitr::include_graphics(system.file("extdata/enron-screenshot.png",
+                                    package = "unpivotr"))
+
 ## ------------------------------------------------------------------------
 library(unpivotr)
 library(tidyxl)
