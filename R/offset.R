@@ -31,8 +31,8 @@
 #' # Load some pivoted data
 #' (x <- purpose$`NNW WNW`)
 #' # Make a tidy representation
-#' cells <- tidytable(x, rownames = FALSE, colnames = FALSE)
-#' cells <- cells[!is.na(cells$character), ] # Introduce 'holes' in the data
+#' cells <- tidy_table(x)
+#' cells <- cells[!is.na(cells$chr), ] # Introduce 'holes' in the data
 #' # Select an L-shape with gaps
 #' bag <- dplyr::filter(cells, row %in% 3:4, col %in% 1:2)
 #' # Offset, notice the L has been squared-off (padded)
@@ -40,7 +40,7 @@
 #' # Select a particular cell
 #' cell <- cells[which(cells$row == 3 & cells$col == 3), ]
 #' # Offset the selection downwards, stopping before the NA.
-#' offset_S(cell, cells, boundary = ~ is.na(character))
+#' offset_S(cell, cells, boundary = ~ is.na(chr))
 #' # Offset the selection right, up to and including the fifth column.
 #' offset_E(cell, cells, boundary = ~ col == 5, include = TRUE)
 #' # Offset the selection beyond the existing cells
@@ -49,7 +49,7 @@
 #' # boundary formula on every possible cell in the given direction
 #' \dontrun{offset_E(cell, cells, boundary = ~ col == 15)}
 #' cell <- cells[which(cells$row == 7 & cells$col %in% 1:2), ]
-#' offset_N(cell, cells, boundary = ~ !is.na(character), edge = TRUE)
+#' offset_N(cell, cells, boundary = ~ !is.na(chr), edge = TRUE)
 offset <- function(bag, cells, direction, n = NULL, boundary = NULL,
                    edge = FALSE, include = FALSE) {
   test_offset_args(bag, direction, n, boundary, edge, include)
@@ -99,7 +99,8 @@ test_offset_args <- function(bag, direction, n, boundary, edge, include) {
     stop("'direction' must be one of 'N', 'S', 'E' and 'W'")
   }
   if (!xor(is.null(n), is.null(boundary))) {
-    stop("Exactly one of 'n' and 'boundary' must be specified")
+    stop(paste0("Exactly one of 'n' and 'boundary' must be specified.\n",
+                "Did you forget the 'cells' argument?"))
   }
   if (!is.null(n)) {
     if (is(n, "formula")) {
@@ -141,7 +142,8 @@ offset_n <- function(bag, cells, direction, n) {
   }
   pad <- tidyr::crossing(row = tidyr::full_seq(rows, 1L),
                          col = tidyr::full_seq(cols, 1L))
-  dplyr::left_join(pad, cells, by = c("row", "col"))
+  out <- dplyr::left_join(pad, cells, by = c("row", "col"))
+  tibble::as_tibble(out)
 }
 
 offset_boundary <- function(bag, cells, direction, boundary, edge, include) {
@@ -187,7 +189,7 @@ offset_boundary <- function(bag, cells, direction, boundary, edge, include) {
   }
   rowcol_name <- rowcol_formula[[2]] # rhs of rowcol_formula (min or max)
   rowcol_text <- deparse(rowcol_name) # "row" or "col"
-  cells <- 
+  cells <-
     cells %>%
     dplyr::filter(row >= y1,
                   row <= y2,
@@ -197,14 +199,14 @@ offset_boundary <- function(bag, cells, direction, boundary, edge, include) {
     dplyr::mutate_(.boundary = boundary) # Apply the boundary formula
   if (edge) {
     # Filter for edges where the boundary exists in every row/col
-    boundaries <- 
+    boundaries <-
       cells %>%
       dplyr::group_by_(rowcol_text) %>%
       dplyr::summarise(.boundary = all(.boundary)) %>%
       dplyr::filter(.boundary) %>% .[[rowcol_text]]
   } else {
     # Get all individual boundaries
-    boundaries <- 
+    boundaries <-
       dplyr::filter(cells, .boundary) %>% .[[rowcol_text]]
   }
   if (length(boundaries) == 0) {
@@ -216,8 +218,12 @@ offset_boundary <- function(bag, cells, direction, boundary, edge, include) {
     cells %>%
     dplyr::select(-.boundary) %>%
     dplyr::bind_rows(bag)
-  bag %>%
-    offset(cells, direction,
-           n = abs(near_boundary - 
-                   rowcol_function_opposite(bag[[rowcol_text]])) - 1 + include)
+  out <- offset(bag,
+                cells,
+                direction,
+                n = abs(near_boundary
+                        - rowcol_function_opposite(bag[[rowcol_text]]))
+                    - 1
+                    + include)
+  tibble::as_tibble(out)
 }

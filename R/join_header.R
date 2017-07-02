@@ -44,26 +44,26 @@
 #' # Load some pivoted data
 #' (x <- purpose$`NNW WNW`)
 #' # Make a tidy representation
-#' cells <- tidytable(x, FALSE, FALSE)
-#' cells <- cells[!is.na(cells$character), ]
+#' cells <- tidy_table(x)
+#' cells <- cells[!is.na(cells$chr), ]
 #' head(cells)
 #' # Select the cells containing the values
-#' datacells <- 
+#' datacells <-
 #'   cells %>%
 #'   filter(row >= 3, col >= 3)
 #' head(datacells)
 #' # Select the row headers
-#' row_headers <- 
+#' row_headers <-
 #'   cells %>%
 #'   filter(col <= 2) %>%
-#'   select(row, col, header = character) %>%
+#'   select(row, col, header = chr) %>%
 #'   split(.$col) # Separate each column of headers
 #' row_headers
 #' # Select the column headers
-#' col_headers <- 
+#' col_headers <-
 #'   cells %>%
 #'   filter(row <= 2) %>%
-#'   select(row, col, header = character) %>%
+#'   select(row, col, header = chr) %>%
 #'   split(.$row) # Separate each row of headers
 #' col_headers
 #' # From each data cell, search for the nearest one of each of the headers
@@ -76,10 +76,10 @@ join_header <- function(bag, header, direction, boundaries = NULL) {
   check_header(header)
   if (direction %in% c("ABOVE", "RIGHT", "BELOW", "LEFT")) {
     do.call(direction, list(bag, header, boundaries))
-  } else if (direction %in% c("N", "E", "S", "W", 
-                             "NNW", "NNE", 
-                             "ENE", "ESE", 
-                             "SSE", "SSW", 
+  } else if (direction %in% c("N", "E", "S", "W",
+                             "NNW", "NNE",
+                             "ENE", "ESE",
+                             "SSE", "SSW",
                              "WSW", "WNW")) {
     if (!is.null(boundaries)) {
       stop("'boundaries' is only supported for the directions 'ABOVE', 'RIGHT'",
@@ -87,7 +87,7 @@ join_header <- function(bag, header, direction, boundaries = NULL) {
     }
     do.call(direction, list(bag, header))
   } else {
-    stop("The direction ", direction, 
+    stop("The direction ", direction,
          ", is either not recognised or not yet supported.")
   }
 }
@@ -96,17 +96,19 @@ join_header <- function(bag, header, direction, boundaries = NULL) {
 #' @export
 N <- function(bag, header) {
   check_header(header)
-  inner_join(bag, header %>% select(-row),
-             by = "col",
-             suffix = c(".data", ".header"))
+  out <- inner_join(bag, select(header, -row),
+                    by = "col",
+                    suffix = c(".data", ".header"))
+  tibble::as_tibble(out)
 }
 
 #' @describeIn join_header Join nearest header in the 'E' direction.
 #' @export
 E <- function(bag, header) {
   check_header(header)
-  inner_join(bag, header %>% select(-col), by = "row",
-             suffix = c(".data", ".header"))
+  out <- inner_join(bag, select(header, -col), by = "row",
+                    suffix = c(".data", ".header"))
+  tibble::as_tibble(out)
 }
 
 #' @describeIn join_header Join nearest header in the 'S' direction.
@@ -121,7 +123,7 @@ W <- E
 #' @export
 NNW <- function(bag, header) {
   check_header(header)
-  header <- 
+  header <-
     header %>%
     dplyr::select(-row) %>%
     dplyr::arrange(col) %>%
@@ -135,14 +137,15 @@ NNW <- function(bag, header) {
     dplyr::tbl_df() %>%
     select(-to_col) %>%
     mutate(row = as.integer(row), col = as.integer(col)) %>%
-    select_(.dots = as.list(c(colnames(bag), everything(.))))
+    select_(.dots = as.list(c(colnames(bag), everything(.)))) %>%
+    tibble::as_tibble()
 }
 
 #' @describeIn join_header Join nearest header in the 'NNE' direction.
 #' @export
 NNE <- function(bag, header) {
   check_header(header)
-  header <- 
+  header <-
     header %>%
     dplyr::select(-row) %>%
     dplyr::arrange(col) %>%
@@ -156,14 +159,15 @@ NNE <- function(bag, header) {
     dplyr::tbl_df() %>%
     select(-from_col) %>%
     mutate(row = as.integer(row), col = as.integer(col)) %>%
-    select_(.dots = as.list(c(colnames(bag), everything(.))))
+    select_(.dots = as.list(c(colnames(bag), everything(.)))) %>%
+    tibble::as_tibble()
 }
 
 #' @describeIn join_header Join nearest header in the 'ENE' direction.
 #' @export
 ENE <- function(bag, header) {
   check_header(header)
-  header <- 
+  header <-
     header %>%
     dplyr::select(-col) %>%
     dplyr::arrange(row) %>%
@@ -177,14 +181,15 @@ ENE <- function(bag, header) {
     dplyr::tbl_df() %>%
     select(-to_row) %>%
     mutate(row = as.integer(row), col = as.integer(col)) %>%
-    select_(.dots = as.list(c(colnames(bag), everything(.))))
+    select_(.dots = as.list(c(colnames(bag), everything(.)))) %>%
+    tibble::as_tibble()
 }
 
 #' @describeIn join_header Join nearest header in the 'ESE' direction.
 #' @export
 ESE <- function(bag, header) {
   check_header(header)
-  header <- 
+  header <-
     header %>%
     dplyr::select(-col) %>%
     dplyr::arrange(row) %>%
@@ -198,7 +203,8 @@ ESE <- function(bag, header) {
     dplyr::tbl_df() %>%
     select(-from_row) %>%
     mutate(row = as.integer(row), col = as.integer(col)) %>%
-    select_(.dots = as.list(c(colnames(bag), everything(.))))
+    select_(.dots = as.list(c(colnames(bag), everything(.)))) %>%
+    tibble::as_tibble()
 }
 
 #' @describeIn join_header Join nearest header in the 'SSE' direction.
@@ -221,7 +227,7 @@ WNW <- ENE
 #' @export
 ABOVE <- function(bag, header, boundaries = NULL) {
   check_header(header)
-  header <- 
+  header <-
     header %>%
     dplyr::select(-row) %>%
     dplyr::arrange(col)
@@ -229,7 +235,7 @@ ABOVE <- function(bag, header, boundaries = NULL) {
     # Align the headers to the boundaries.
     # A boundary is marked at col=1 if it doesn't already exist.  There may then
     # be fewer headers than boundaries, but not more headers than boundaries.
-    boundaries <- 
+    boundaries <-
       boundaries %>%
       dplyr::arrange(col) %>%
       dplyr::mutate(to_col = dplyr::lead(col - 1, default = Inf)) %>%
@@ -251,7 +257,7 @@ ABOVE <- function(bag, header, boundaries = NULL) {
     # The domain of each header is up to (but not including) half-way between it
     # and headers either side, except the ends, which extend to the edge of the
     # sheet.
-    header <- 
+    header <-
       header %>%
       dplyr::mutate(
         from_col = floor((col + dplyr::lag(as.numeric(col), default = -Inf) + 2)/2),
@@ -268,14 +274,15 @@ ABOVE <- function(bag, header, boundaries = NULL) {
     rename(col = from_col) %>%
     select(-to_col) %>%
     mutate(row = as.integer(row), col = as.integer(col)) %>%
-    select_(.dots = as.list(c(colnames(bag), everything(.))))
+    select_(.dots = as.list(c(colnames(bag), everything(.)))) %>%
+    tibble::as_tibble()
 }
 
 #' @describeIn join_header Join nearest header in the 'LEFT' direction.
 #' @export
 LEFT <- function(bag, header, boundaries = NULL) {
   check_header(header)
-  header <- 
+  header <-
     header %>%
     dplyr::select(-col) %>%
     dplyr::arrange(row)
@@ -283,7 +290,7 @@ LEFT <- function(bag, header, boundaries = NULL) {
     # Align the headers to the boundaries.
     # A boundary is marked at row=1 if it doesn't already exist.  There may then
     # be fewer headers than boundaries, but not more headers than boundaries.
-    boundaries <- 
+    boundaries <-
       boundaries %>%
       dplyr::arrange(row) %>%
       dplyr::mutate(to_row = dplyr::lead(row - 1, default = Inf)) %>%
@@ -306,7 +313,7 @@ LEFT <- function(bag, header, boundaries = NULL) {
     # The domain of each header is up to (but not including) half-way between it
     # and headers either side, except the ends, which extend to the edge of the
     # sheet.
-    header <- 
+    header <-
       header %>%
       dplyr::mutate(
         from_row = floor((row + dplyr::lag(as.numeric(row), default = -Inf) + 2)/2),
@@ -323,7 +330,8 @@ LEFT <- function(bag, header, boundaries = NULL) {
     rename(row = from_row) %>%
     select(-to_row) %>%
     mutate(row = as.integer(row), col = as.integer(col)) %>%
-    select_(.dots = as.list(c(colnames(bag), everything(.))))
+    select_(.dots = as.list(c(colnames(bag), everything(.)))) %>%
+    tibble::as_tibble()
 }
 
 #' @describeIn join_header Join nearest header in the 'BELOW' direction.

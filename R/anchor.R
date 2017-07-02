@@ -13,7 +13,7 @@
 #' must be the same length.  TRUE by default.
 #' @export
 #' @examples
-#' cells <- tidytable(purpose$`NNW WNW`)
+#' cells <- tidy_table(purpose$`NNW WNW`)
 #' \dontrun{
 #'   anchor(cells, 0, 1)
 #'   anchor(cells, 1, 1:2)
@@ -32,5 +32,6 @@ anchor <- function (cells, rows, cols, cross = TRUE) {
     } else {
       left <- tibble::data_frame(row = rows, col = cols)
     }
-    dplyr::left_join(left, cells, by = c("row", "col"))
+    out <- dplyr::left_join(left, cells, by = c("row", "col"))
+    tibble::as_tibble(out)
 }

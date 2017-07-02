@@ -35,12 +35,12 @@
 #' # Load some pivoted data
 #' (x <- purpose$`NNW WNW`)
 #' # Make a tidy representation
-#' cells <- tidytable(x, rownames = FALSE, colnames = FALSE)
-#' cells <- cells[!is.na(cells$character), ] # Introduce 'holes' in the data
+#' cells <- tidy_table(x)
+#' cells <- cells[!is.na(cells$chr), ] # Introduce 'holes' in the data
 #' # Select a particular cell
 #' cell <- cells[which(cells$row == 3 & cells$col == 3), ]
 #' # Extend the selection downwards, stopping before the NA.
-#' extend_S(cell, cells, boundary = ~ is.na(character))
+#' extend_S(cell, cells, boundary = ~ is.na(chr))
 #' # Extend the selection right, up to and including the fifth column.
 #' extend_E(cell, cells, boundary = ~ col == 5, include = TRUE)
 #' # Extend the selection beyond the existing cells
@@ -49,7 +49,7 @@
 #' # boundary formula on every possible cell in the given direction
 #' \dontrun{extend_E(cell, cells, boundary = ~ col == 15)}
 #' cell <- cells[which(cells$row == 7 & cells$col %in% 1:2), ]
-#' extend_N(cell, cells, boundary = ~ !is.na(character), edge = TRUE)
+#' extend_N(cell, cells, boundary = ~ !is.na(chr), edge = TRUE)
 extend <- function(bag, cells, direction, n = NULL, boundary = NULL,
                    edge = FALSE, include = FALSE) {
   test_extend_args(bag, direction, n, boundary, edge, include)
@@ -99,7 +99,8 @@ test_extend_args <- function(bag, direction, n, boundary, edge, include) {
     stop("'direction' must be one of 'N', 'S', 'E' and 'W'")
   }
   if (!xor(is.null(n), is.null(boundary))) {
-    stop("Exactly one of 'n' and 'boundary' must be specified")
+    stop(paste0("Exactly one of 'n' and 'boundary' must be specified.\n",
+                "Did you forget the 'cells' argument?"))
   }
   if (!is.null(n)) {
     if (is(n, "formula")) {
@@ -150,7 +151,8 @@ extend_n <- function(bag, cells, direction, n) {
            col <= x2) %>%
     pad(c(y1, y2), c(x1, x2)) %>%
     dplyr::bind_rows(bag) %>%
-    dplyr::distinct()
+    dplyr::distinct() %>%
+    tibble::as_tibble()
 }
 
 extend_boundary <- function(bag, cells, direction, boundary, edge, include) {
@@ -227,5 +229,6 @@ extend_boundary <- function(bag, cells, direction, boundary, edge, include) {
     dplyr::filter_(lazyeval::interp(~ lt_gt(rowcol, near_boundary + include),
                                     rowcol = rowcol_name)) %>%
     dplyr::select(-.boundary) %>%
-    dplyr::bind_rows(bag)
+    dplyr::bind_rows(bag) %>%
+    tibble::as_tibble()
 }

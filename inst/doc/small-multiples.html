@@ -12,7 +12,7 @@
 
 <meta name="author" content="Duncan Garmonsway" />
 
-<meta name="date" content="2017-04-23" />
+<meta name="date" content="2017-07-02" />
 
 <title>Small Multiples</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Small Multiples</h1>
 <h4 class="author"><em>Duncan Garmonsway</em></h4>
-<h4 class="date"><em>2017-04-23</em></h4>
+<h4 class="date"><em>2017-07-02</em></h4>
 
 
 <div id="TOC">
@@ -138,20 +138,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)                  <span class="co"># Separate the row of headers into list elements</span>
 col_headers</code></pre></div>
 <pre><code>## $`14`
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##     row   col                   value
 ##   &lt;int&gt; &lt;int&gt;                   &lt;chr&gt;
 ## 1    14    17 IF NWPL Rocky Mountains
 ## 
 ## $`15`
-## # A tibble: 2 × 3
+## # A tibble: 2 x 3
 ##     row   col       value
 ##   &lt;int&gt; &lt;int&gt;       &lt;chr&gt;
 ## 1    15    17 Fixed Price
 ## 2    15    19       Basis
 ## 
 ## $`16`
-## # A tibble: 4 × 3
+## # A tibble: 4 x 3
 ##     row   col value
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;
 ## 1    16    17   BID
@@ -170,18 +170,18 @@ col_headers</code></pre></div>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.double</span>(content)) <span class="op">%&gt;%</span><span class="co"># Convert the values to double</span>
 <span class="st">  </span><span class="kw">select</span>(row, col, value)               <span class="co"># Prepare for joining to headers</span>
 <span class="kw">print</span>(datacells, <span class="dt">n =</span> <span class="ot">Inf</span>)</code></pre></div>
-<pre><code>## # A tibble: 24 × 3
+<pre><code>## # A tibble: 24 x 3
 ##      row   col      value
 ##    &lt;int&gt; &lt;int&gt;      &lt;dbl&gt;
-## 1     18    17  2.0600000
-## 2     18    18  2.0800000
-## 3     19    17  2.3950000
-## 4     19    18  2.4150000
-## 5     19    19 -0.5650000
-## 6     19    20 -0.5450000
-## 7     20    17  2.5940000
-## 8     20    18  2.6140000
-## 9     20    19 -0.4937500
+##  1    18    17  2.0600000
+##  2    18    18  2.0800000
+##  3    19    17  2.3950000
+##  4    19    18  2.4150000
+##  5    19    19 -0.5650000
+##  6    19    20 -0.5450000
+##  7    20    17  2.5940000
+##  8    20    18  2.6140000
+##  9    20    19 -0.4937500
 ## 10    20    20 -0.4737500
 ## 11    21    17  2.5812857
 ## 12    21    18  2.6012857
@@ -202,18 +202,18 @@ col_headers</code></pre></div>
 <span class="st">  </span><span class="kw">NNW</span>(col_headers[[<span class="dv">1</span>]]) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># This header isn't in every column</span>
 <span class="st">  </span><span class="kw">NNW</span>(col_headers[[<span class="dv">2</span>]]) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Nor is this header</span>
 <span class="st">  </span><span class="kw">N</span>(col_headers[[<span class="dv">3</span>]])    <span class="co"># But this one is</span></code></pre></div>
-<pre><code>## # A tibble: 24 × 6
+<pre><code>## # A tibble: 24 x 6
 ##      row   col  value.data                 i.value i.value.1 value.header
 ##    &lt;int&gt; &lt;int&gt;       &lt;chr&gt;                   &lt;chr&gt;     &lt;dbl&gt;        &lt;chr&gt;
-## 1     18    17 Fixed Price IF NWPL Rocky Mountains   2.06000          BID
-## 2     18    18 Fixed Price IF NWPL Rocky Mountains   2.08000        OFFER
-## 3     19    17 Fixed Price IF NWPL Rocky Mountains   2.39500          BID
-## 4     19    18 Fixed Price IF NWPL Rocky Mountains   2.41500        OFFER
-## 5     19    19       Basis IF NWPL Rocky Mountains  -0.56500          BID
-## 6     19    20       Basis IF NWPL Rocky Mountains  -0.54500        OFFER
-## 7     20    17 Fixed Price IF NWPL Rocky Mountains   2.59400          BID
-## 8     20    18 Fixed Price IF NWPL Rocky Mountains   2.61400        OFFER
-## 9     20    19       Basis IF NWPL Rocky Mountains  -0.49375          BID
+##  1    18    17 Fixed Price IF NWPL Rocky Mountains   2.06000          BID
+##  2    18    18 Fixed Price IF NWPL Rocky Mountains   2.08000        OFFER
+##  3    19    17 Fixed Price IF NWPL Rocky Mountains   2.39500          BID
+##  4    19    18 Fixed Price IF NWPL Rocky Mountains   2.41500        OFFER
+##  5    19    19       Basis IF NWPL Rocky Mountains  -0.56500          BID
+##  6    19    20       Basis IF NWPL Rocky Mountains  -0.54500        OFFER
+##  7    20    17 Fixed Price IF NWPL Rocky Mountains   2.59400          BID
+##  8    20    18 Fixed Price IF NWPL Rocky Mountains   2.61400        OFFER
+##  9    20    19       Basis IF NWPL Rocky Mountains  -0.49375          BID
 ## 10    20    20       Basis IF NWPL Rocky Mountains  -0.47375        OFFER
 ## # ... with 14 more rows</code></pre>
 </div>
@@ -253,18 +253,18 @@ col_headers</code></pre></div>
 <p>Finally, map the ‘tidy’ function to each ‘Fixed Price’ header, and bind the results. into one data frame. The <a href="https://github.com/hadley/purrr"><code>purrr()</code></a> package is used here, but this could also be done with the <code>apply()</code> family of functions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_df</span>(fixed_price, tidy) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(col, row) <span class="co"># See that, from row 39, the region changes, as it ought.</span></code></pre></div>
-<pre><code>## # A tibble: 240 × 6
+<pre><code>## # A tibble: 240 x 6
 ##      row   col  value.data                i.value i.value.1 value.header
 ##    &lt;int&gt; &lt;int&gt;       &lt;chr&gt;                  &lt;chr&gt;     &lt;dbl&gt;        &lt;chr&gt;
-## 1     28     7 Fixed Price IF CIG Rocky Mountains  1.940000          BID
-## 2     29     7 Fixed Price IF CIG Rocky Mountains  1.960000          BID
-## 3     30     7 Fixed Price IF CIG Rocky Mountains  2.345000          BID
-## 4     31     7 Fixed Price IF CIG Rocky Mountains  2.547750          BID
-## 5     32     7 Fixed Price IF CIG Rocky Mountains  2.471286          BID
-## 6     33     7 Fixed Price IF CIG Rocky Mountains  3.311000          BID
-## 7     34     7 Fixed Price IF CIG Rocky Mountains  2.550750          BID
-## 8     39     7 Fixed Price             AECO / NIT  2.376377          BID
-## 9     40     7 Fixed Price             AECO / NIT  2.397635          BID
+##  1    28     7 Fixed Price IF CIG Rocky Mountains  1.940000          BID
+##  2    29     7 Fixed Price IF CIG Rocky Mountains  1.960000          BID
+##  3    30     7 Fixed Price IF CIG Rocky Mountains  2.345000          BID
+##  4    31     7 Fixed Price IF CIG Rocky Mountains  2.547750          BID
+##  5    32     7 Fixed Price IF CIG Rocky Mountains  2.471286          BID
+##  6    33     7 Fixed Price IF CIG Rocky Mountains  3.311000          BID
+##  7    34     7 Fixed Price IF CIG Rocky Mountains  2.550750          BID
+##  8    39     7 Fixed Price             AECO / NIT  2.376377          BID
+##  9    40     7 Fixed Price             AECO / NIT  2.397635          BID
 ## 10    41     7 Fixed Price             AECO / NIT  2.551891          BID
 ## # ... with 230 more rows</code></pre>
 </div>
@@ -323,18 +323,18 @@ row_headers &lt;-
 
 <span class="kw">map_df</span>(fixed_price, tidy) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(col, row) <span class="co"># See that, from row 39, the context loops, as it ought.</span></code></pre></div>
-<pre><code>## # A tibble: 240 × 7
+<pre><code>## # A tibble: 240 x 7
 ##      row   col  value.data                i.value i.value.1 value.header
 ##    &lt;int&gt; &lt;int&gt;       &lt;chr&gt;                  &lt;chr&gt;     &lt;dbl&gt;        &lt;chr&gt;
-## 1     28     7 Fixed Price IF CIG Rocky Mountains  1.940000          BID
-## 2     29     7 Fixed Price IF CIG Rocky Mountains  1.960000          BID
-## 3     30     7 Fixed Price IF CIG Rocky Mountains  2.345000          BID
-## 4     31     7 Fixed Price IF CIG Rocky Mountains  2.547750          BID
-## 5     32     7 Fixed Price IF CIG Rocky Mountains  2.471286          BID
-## 6     33     7 Fixed Price IF CIG Rocky Mountains  3.311000          BID
-## 7     34     7 Fixed Price IF CIG Rocky Mountains  2.550750          BID
-## 8     39     7 Fixed Price             AECO / NIT  2.376377          BID
-## 9     40     7 Fixed Price             AECO / NIT  2.397635          BID
+##  1    28     7 Fixed Price IF CIG Rocky Mountains  1.940000          BID
+##  2    29     7 Fixed Price IF CIG Rocky Mountains  1.960000          BID
+##  3    30     7 Fixed Price IF CIG Rocky Mountains  2.345000          BID
+##  4    31     7 Fixed Price IF CIG Rocky Mountains  2.547750          BID
+##  5    32     7 Fixed Price IF CIG Rocky Mountains  2.471286          BID
+##  6    33     7 Fixed Price IF CIG Rocky Mountains  3.311000          BID
+##  7    34     7 Fixed Price IF CIG Rocky Mountains  2.550750          BID
+##  8    39     7 Fixed Price             AECO / NIT  2.376377          BID
+##  9    40     7 Fixed Price             AECO / NIT  2.397635          BID
 ## 10    41     7 Fixed Price             AECO / NIT  2.551891          BID
 ## # ... with 230 more rows, and 1 more variables: value &lt;chr&gt;</code></pre>
 </div>
@@ -413,7 +413,7 @@ tidy &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

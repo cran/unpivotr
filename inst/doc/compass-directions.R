@@ -5,28 +5,28 @@ library(unpivotr)
 
 ## ---- echo = TRUE--------------------------------------------------------
 (original <- purpose$`NNW WNW`)
-tail(cells <- tidytable(original, colnames = FALSE))
+tail(cells <- tidy_table(original))
 
 ## ---- echo = TRUE--------------------------------------------------------
 row_headers <-
   cells %>%
-  filter(col <= 2, !is.na(character)) %>% # Select all rows of headers at once
-  select(row, col, header = character) %>%
+  filter(col <= 2, !is.na(chr)) %>% # Select all rows of headers at once
+  select(row, col, header = chr) %>%
   split(.$col) # Return each row of headers in its own element of a list
 row_headers
 
 col_headers <-
   cells %>%
-  filter(row <= 2, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(row <= 2, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$row)
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 datacells <-
   cells %>%
-  filter(row >= 3, col >= 3, !is.na(character)) %>%
-  mutate(value = as.integer(character)) %>%
+  filter(row >= 3, col >= 3, !is.na(chr)) %>%
+  mutate(value = as.integer(chr)) %>%
   select(row, col, value)
 head(datacells)
 
@@ -43,28 +43,28 @@ datacells %>% as.data.frame
 NNW_WNW <- datacells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
-cells <- tidytable(purpose$`NNE WSW`, colnames = FALSE)
+cells <- tidy_table(purpose$`NNE WSW`)
 
 ## ---- echo = TRUE--------------------------------------------------------
 row_headers <-
   cells %>%
-  filter(col <= 2, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(col <= 2, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$col)
 row_headers
 
 col_headers <-
   cells %>%
-  filter(row <= 2, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(row <= 2, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$row)
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 datacells <-
   cells %>%
-  filter(row >= 3, col >= 3, !is.na(character)) %>%
-  mutate(value = as.integer(character)) %>%
+  filter(row >= 3, col >= 3, !is.na(chr)) %>%
+  mutate(value = as.integer(chr)) %>%
   select(row, col, value)
 datacells
 
@@ -81,28 +81,28 @@ datacells %>% as.data.frame
 NNE_WSW <- datacells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
-cells <- tidytable(purpose$`SSE ESE`, colnames = FALSE)
+cells <- tidy_table(purpose$`SSE ESE`)
 
 ## ---- echo = TRUE--------------------------------------------------------
 row_headers <-
   cells %>%
-  filter(col >= 5, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(col >= 5, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$col)
 row_headers
 
 col_headers <-
   cells %>%
-  filter(row >= 21, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(row >= 21, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$row)
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 datacells <-
   cells %>%
-  filter(row <= 20, col <= 4, !is.na(character)) %>%
-  mutate(value = as.integer(character)) %>%
+  filter(row <= 20, col <= 4, !is.na(chr)) %>%
+  mutate(value = as.integer(chr)) %>%
   select(row, col, value)
 datacells
 
@@ -119,28 +119,28 @@ datacells %>% as.data.frame
 SSE_ESE <- datacells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
-cells <- tidytable(purpose$`SSW ENE`, colnames = FALSE)
+cells <- tidy_table(purpose$`SSW ENE`)
 
 ## ---- echo = TRUE--------------------------------------------------------
 row_headers <-
   cells %>%
-  filter(col >= 5, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(col >= 5, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$col)
 row_headers
 
 col_headers <-
   cells %>%
-  filter(row >= 21, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(row >= 21, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$row)
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 datacells <-
   cells %>%
-  filter(row <= 20, col <= 4, !is.na(character)) %>%
-  mutate(value = as.integer(character)) %>%
+  filter(row <= 20, col <= 4, !is.na(chr)) %>%
+  mutate(value = as.integer(chr)) %>%
   select(row, col, value)
 datacells
 
@@ -162,28 +162,28 @@ identical(SSW_ENE, SSE_ESE)
 identical(NNW_WNW[, -1:-2], SSW_ENE[, -1:-2])
 
 ## ---- echo = TRUE--------------------------------------------------------
-cells <- tidytable(purpose$`ABOVE LEFT`, colnames = FALSE)
+cells <- tidy_table(purpose$`ABOVE LEFT`)
 
 ## ---- echo = TRUE--------------------------------------------------------
 row_headers <-
   cells %>%
-  filter(col <= 2, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(col <= 2, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$col)
 row_headers
 
 col_headers <-
   cells %>%
-  filter(row <= 2, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(row <= 2, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$row)
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 datacells <-
   cells %>%
-  filter(row >= 3, col >= 3, !is.na(character)) %>%
-  mutate(value = as.integer(character)) %>%
+  filter(row >= 3, col >= 3, !is.na(chr)) %>%
+  mutate(value = as.integer(chr)) %>%
   select(row, col, value)
 datacells
 
@@ -200,28 +200,28 @@ datacells %>% as.data.frame
 ABOVE_LEFT <- datacells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
-cells <- tidytable(purpose$`BELOW RIGHT`, colnames = FALSE)
+cells <- tidy_table(purpose$`BELOW RIGHT`)
 
 ## ---- echo = TRUE--------------------------------------------------------
 row_headers <-
   cells %>%
-  filter(col >= 7, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(col >= 7, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$col)
 row_headers
 
 col_headers <-
   cells %>%
-  filter(row >= 11, !is.na(character)) %>%
-  select(row, col, header = character) %>%
+  filter(row >= 11, !is.na(chr)) %>%
+  select(row, col, header = chr) %>%
   split(.$row)
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 datacells <-
   cells %>%
-  filter(row <= 10, col <= 6, !is.na(character)) %>%
-  mutate(value = as.integer(character)) %>%
+  filter(row <= 10, col <= 6, !is.na(chr)) %>%
+  mutate(value = as.integer(chr)) %>%
   select(row, col, value)
 datacells
 
@@ -266,7 +266,7 @@ datacells <-
   cells %>%
   filter(row >= 4, col >= 4, !is.na(content)) %>%
   mutate(content = ifelse(is.na(character), content, NA)) %>%
-  mutate(value = as.integer(character)) %>%
+  mutate(value = as.integer(content)) %>%
   select(row, col, value)
 datacells
 
@@ -323,7 +323,7 @@ datacells <-
   cells %>%
   filter(row <= 13, col <= 9, !is.na(content)) %>%
   mutate(content = ifelse(is.na(character), content, NA)) %>%
-  mutate(value = as.integer(character)) %>%
+  mutate(value = as.integer(content)) %>%
   select(row, col, value)
 datacells
 
