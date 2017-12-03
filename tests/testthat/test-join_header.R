@@ -267,8 +267,8 @@ test_that("Compass directions BELOW and RIGHT work", {
 
 test_that("Compass directions ABOVE and LEFT work with boundaries", {
   spreadsheet <- system.file("extdata/purpose.xlsx", package = "unpivotr")
-  cells <- tidy_xlsx(spreadsheet, "ABOVE LEFT border")$data[[1]]
-  formatting <- tidy_xlsx(spreadsheet)$formats
+  cells <- xlsx_cells(spreadsheet, "ABOVE LEFT border")
+  formatting <- xlsx_formats(spreadsheet)
   left_borders <- which(!is.na(formatting$local$border$left$style))
   top_borders <- which(!is.na(formatting$local$border$top$style))
   left_border_cells <-
@@ -291,8 +291,8 @@ test_that("Compass directions ABOVE and LEFT work with boundaries", {
     split(.$row)
   datacells <-
     cells %>%
-    filter(row >= 4, col >= 4, !is.na(content)) %>%
-    mutate(content = ifelse(is.na(character), content, NA)) %>%
+    filter(row >= 4, col >= 4, !is_blank) %>%
+    mutate(content = ifelse(is.na(character), numeric, NA)) %>%
     mutate(value = as.integer(content)) %>%
     select(row, col, value) %>%
     ABOVE(col_headers[[1]], left_border_cells) %>% # Different from ABOVE LEFT
@@ -314,8 +314,8 @@ test_that("Compass directions ABOVE and LEFT work with boundaries", {
 
 test_that("Compass directions BELOW and RIGHT work with boundaries", {
   spreadsheet <- system.file("extdata/purpose.xlsx", package = "unpivotr")
-  cells <- tidy_xlsx(spreadsheet, "BELOW RIGHT border")$data[[1]]
-  formatting <- tidy_xlsx(spreadsheet)$formats
+  cells <- xlsx_cells(spreadsheet, "BELOW RIGHT border")
+  formatting <- xlsx_formats(spreadsheet)
   left_borders <- which(!is.na(formatting$local$border$left$style))
   top_borders <- which(!is.na(formatting$local$border$top$style))
   left_border_cells <-
@@ -328,18 +328,18 @@ test_that("Compass directions BELOW and RIGHT work with boundaries", {
     select(row, col)
   row_headers <-
     cells %>%
-    filter(col >= 10, !is.na(content)) %>%
+    filter(col >= 10, !is_blank) %>%
     select(row, col, header = character) %>%
     split(.$col)
   col_headers <-
     cells %>%
-    filter(row >= 14, !is.na(content)) %>%
+    filter(row >= 14, !is_blank) %>%
     select(row, col, header = character) %>%
     split(.$row)
   datacells <-
     cells %>%
-    filter(row <= 13, col <= 9, !is.na(content)) %>%
-    mutate(content = ifelse(is.na(character), content, NA)) %>%
+    filter(row <= 13, col <= 9, !is_blank) %>%
+    mutate(content = ifelse(is.na(character), numeric, NA)) %>%
     mutate(value = as.integer(content)) %>%
     select(row, col, value) %>%
     BELOW(col_headers[[2]], left_border_cells) %>% # Different from BELOW RIGHT
