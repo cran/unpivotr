@@ -36,9 +36,14 @@
 #'
 #' @examples
 #' tidy_table(Formaldehyde)
-#' tidy_table(tidyr::nest(chickwts, -feed))
 #' tidy_table(Formaldehyde, colnames = TRUE)
 #' tidy_table(Formaldehyde, rownames = TRUE)
+#'
+#' # 'list' columns are undisturbed
+#' x <- data.frame(a = c("a", "b"), stringsAsFactors = FALSE)
+#' x$b <- list(1:2, 3:4)
+#' x
+#' unpivotr::tidy_table(x)
 #'
 #' colspan <- system.file("extdata", "colspan.html", package = "unpivotr")
 #' rowspan <- system.file("extdata", "rowspan.html", package = "unpivotr")
@@ -56,18 +61,6 @@
 #' @export
 tidy_table <- function(x, rownames = FALSE, colnames = FALSE) {
   UseMethod("tidy_table")
-}
-
-# if_else is fussy about types, so return the correct type of NA
-NA_type_ <- function(x) {
-  switch(tibble::type_sum(x),
-         NULL = NA,
-         lgl = NA,
-         int = NA_integer_,
-         dbl = NA_real_,
-         fctr = NA_integer_,
-         chr = NA_character_,
-         cplx = NA_complex_)
 }
 
 #' @export
@@ -95,9 +88,7 @@ tidy_table.data.frame <- function(x, rownames = FALSE, colnames = FALSE) {
                                                          "col",
                                                          "fctr",
                                                          "list")),
-                          ~ unlist(purrr::map(.x, ~ dplyr::if_else(is.null(.x),
-                                                                   NA_type_(.x),
-                                                                   .x))))
+                       ~ unlist(purrr::map(.x, ~ ifelse(is.null(.x), NA, .x))))
   # Append row and column names
   if (rownames) {
     row_names <- row.names(x)
@@ -196,3 +187,4 @@ tidy_table.xml_document <- function (x, rownames = FALSE, colnames = FALSE) {
   tables <- xml2::xml_find_all(x, xpath = "//table[not(ancestor::table)]")
   lapply(tables, tidy_table)
 }
+

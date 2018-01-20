@@ -1,3 +1,8 @@
+# unpivotr 0.3.1
+
+* Performance improvements to `tidy_table()`.
+* Fixed a CRAN test on some platforms.
+
 # unpivotr 0.3.0
 
 * Made compatible with tidyxl version 1.0.0 (avoids `dplyr::distinct()`, which
