@@ -23,24 +23,24 @@ col_headers <-
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
+data_cells <-
   cells %>%
   filter(row >= 3, col >= 3, !is.na(chr)) %>%
   mutate(value = as.integer(chr)) %>%
   select(row, col, value)
-head(datacells)
+head(data_cells)
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  NNW(col_headers[[1]]) %>%
-  N(col_headers[[2]]) %>%
-  WNW(row_headers[[1]]) %>%
-  W(row_headers[[2]])
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[1]], "NNW") %>%
+  enhead(col_headers[[2]], "N") %>%
+  enhead(row_headers[[1]], "WNW") %>%
+  enhead(row_headers[[2]], "W")
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-NNW_WNW <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+NNW_WNW <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 cells <- tidy_table(purpose$`NNE WSW`)
@@ -61,24 +61,24 @@ col_headers <-
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
+data_cells <-
   cells %>%
   filter(row >= 3, col >= 3, !is.na(chr)) %>%
   mutate(value = as.integer(chr)) %>%
   select(row, col, value)
-datacells
+data_cells
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  NNE(col_headers[[1]]) %>% # Different from NNW WNW
-  N(col_headers[[2]]) %>% # Same as NNW WNW
-  WSW(row_headers[[1]]) %>% # Different from NNW WNW
-  W(row_headers[[2]]) # Same as NNW WNW
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[1]], "NNE") %>% # Different from NNW WNW
+  enhead(col_headers[[2]], "N") %>% # Same as NNW WNW
+  enhead(row_headers[[1]], "WSW") %>% # Different from NNW WNW
+  enhead(row_headers[[2]], "W") # Same as NNW WNW
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-NNE_WSW <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+NNE_WSW <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 cells <- tidy_table(purpose$`SSE ESE`)
@@ -99,24 +99,24 @@ col_headers <-
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
+data_cells <-
   cells %>%
   filter(row <= 20, col <= 4, !is.na(chr)) %>%
   mutate(value = as.integer(chr)) %>%
   select(row, col, value)
-datacells
+data_cells
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  SSE(col_headers[[2]]) %>%
-  S(col_headers[[1]]) %>%
-  ESE(row_headers[[2]]) %>%
-  E(row_headers[[1]])
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[2]], "SSE") %>%
+  enhead(col_headers[[1]], "S") %>%
+  enhead(row_headers[[2]], "ESE") %>%
+  enhead(row_headers[[1]], "E")
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-SSE_ESE <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+SSE_ESE <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 cells <- tidy_table(purpose$`SSW ENE`)
@@ -137,24 +137,24 @@ col_headers <-
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
+data_cells <-
   cells %>%
   filter(row <= 20, col <= 4, !is.na(chr)) %>%
   mutate(value = as.integer(chr)) %>%
   select(row, col, value)
-datacells
+data_cells
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  SSW(col_headers[[2]]) %>% # Different from SSE ESE
-  S(col_headers[[1]]) %>% # Same as SSE ESE
-  ENE(row_headers[[2]]) %>% # Different from SSE ESE
-  E(row_headers[[1]]) # Same as SSE ESE
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[2]], "SSW") %>% # Different from SSE ESE
+  enhead(col_headers[[1]], "S") %>% # Same as SSE ESE
+  enhead(row_headers[[2]], "ENE") %>% # Different from SSE ESE
+  enhead(row_headers[[1]], "E") # Same as SSE ESE
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-SSW_ENE <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+SSW_ENE <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 identical(NNW_WNW, NNE_WSW)
@@ -180,24 +180,24 @@ col_headers <-
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
+data_cells <-
   cells %>%
   filter(row >= 3, col >= 3, !is.na(chr)) %>%
   mutate(value = as.integer(chr)) %>%
   select(row, col, value)
-datacells
+data_cells
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  ABOVE(col_headers[[1]]) %>% # Different from SSE ESE
-  N(col_headers[[2]]) %>% # Same as SSE ESE
-  LEFT(row_headers[[1]]) %>% # Different from SSE ESE
-  W(row_headers[[2]]) # Same as SSE ESE
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[1]], "ABOVE") %>% # Different from SSE ESE
+  enhead(col_headers[[2]], "N") %>% # Same as SSE ESE
+  enhead(row_headers[[1]], "LEFT") %>% # Different from SSE ESE
+  enhead(row_headers[[2]], "W") # Same as SSE ESE
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-ABOVE_LEFT <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+ABOVE_LEFT <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 cells <- tidy_table(purpose$`BELOW RIGHT`)
@@ -218,24 +218,24 @@ col_headers <-
 col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
+data_cells <-
   cells %>%
   filter(row <= 10, col <= 6, !is.na(chr)) %>%
   mutate(value = as.integer(chr)) %>%
   select(row, col, value)
-datacells
+data_cells
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  BELOW(col_headers[[2]]) %>%
-  S(col_headers[[1]]) %>%
-  RIGHT(row_headers[[2]]) %>%
-  E(row_headers[[1]])
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[2]], "BELOW") %>%
+  enhead(col_headers[[1]], "S") %>%
+  enhead(row_headers[[2]], "RIGHT") %>%
+  enhead(row_headers[[1]], "E")
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-BELOW_RIGHT <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+BELOW_RIGHT <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 identical(ABOVE_LEFT[, -1:-2], BELOW_RIGHT[, -1:-2])
@@ -262,13 +262,13 @@ col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 # Same as ABOVE LEFT without borders
-datacells <-
+data_cells <-
   cells %>%
   filter(row >= 4, col >= 4, !is_blank) %>%
   mutate(content = ifelse(is.na(character), numeric, NA)) %>%
   mutate(value = as.integer(content)) %>%
   select(row, col, value)
-datacells
+data_cells
 
 ## ---- echo = TRUE--------------------------------------------------------
 # Different from ABOVE LEFT without borders
@@ -287,16 +287,16 @@ top_border_cells <-
   select(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  ABOVE(col_headers[[1]], left_border_cells) %>% # Different from ABOVE LEFT
-  N(col_headers[[2]]) %>% # Same as ABOVE LEFT
-  LEFT(row_headers[[1]], top_border_cells) %>% # Different from ABOVE LEFT
-  W(row_headers[[2]]) # Same as ABOVE LEFT
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[1]], "ABOVE", left_border_cells) %>% # Different from ABOVE LEFT
+  enhead(col_headers[[2]], "N") %>% # Same as ABOVE LEFT
+  enhead(row_headers[[1]], "LEFT", top_border_cells) %>% # Different from ABOVE LEFT
+  enhead(row_headers[[2]], "W") # Same as ABOVE LEFT
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-ABOVE_LEFT_borders <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+ABOVE_LEFT_borders <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 cells <- tidy_xlsx(spreadsheet, "BELOW RIGHT border")$data[[1]]
@@ -319,13 +319,13 @@ col_headers
 
 ## ---- echo = TRUE--------------------------------------------------------
 # Same as BELOW RIGHT without borders
-datacells <-
+data_cells <-
   cells %>%
   filter(row <= 13, col <= 9, !is_blank) %>%
   mutate(content = ifelse(is.na(character), numeric, NA)) %>%
   mutate(value = as.integer(content)) %>%
   select(row, col, value)
-datacells
+data_cells
 
 ## ---- echo = TRUE--------------------------------------------------------
 # Different from BELOW RIGHT without borders
@@ -344,16 +344,16 @@ top_border_cells <-
   select(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells <-
-  datacells %>%
-  BELOW(col_headers[[2]], left_border_cells) %>% # Different from BELOW RIGHT
-  S(col_headers[[1]]) %>% # Same as BELOW RIGHT
-  RIGHT(row_headers[[2]], top_border_cells) %>% # Different from BELOW RIGHT
-  E(row_headers[[1]]) # Same as BELOW RIGHT
+data_cells <-
+  data_cells %>%
+  enhead(col_headers[[2]], "BELOW", left_border_cells) %>% # Different from BELOW RIGHT
+  enhead(col_headers[[1]], "S") %>% # Same as BELOW RIGHT
+  enhead(row_headers[[2]], "RIGHT", top_border_cells) %>% # Different from BELOW RIGHT
+  enhead(row_headers[[1]], "E") # Same as BELOW RIGHT
 
 ## ---- echo = TRUE--------------------------------------------------------
-datacells %>% as.data.frame
-BELOW_RIGHT_borders <- datacells %>% arrange(row, col)
+data_cells %>% as.data.frame
+BELOW_RIGHT_borders <- data_cells %>% arrange(row, col)
 
 ## ---- echo = TRUE--------------------------------------------------------
 identical(ABOVE_LEFT[, -1:-2], BELOW_RIGHT[, -1:-2])

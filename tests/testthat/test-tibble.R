@@ -1,42 +1,40 @@
 context("tibbles")
 
 test_that("functions return tibbles", {
-  library(dplyr)
   # Load some pivoted data
   x <- purpose$`NNW WNW`
   # Make a tidy representation
   cells <- tidy_table(x)
   cells <- cells[!is.na(cells$chr), ]
   # Select the cells containing the values
-  datacells <-
+  data_cells <-
     cells %>%
-    filter(row >= 3, col >= 3)
+    dplyr::filter(row >= 3, col >= 3)
   # Select the column headers
   col_headers <-
     cells %>%
-    filter(row <= 2) %>%
-    select(row, col, header = chr) %>%
+    dplyr::filter(row <= 2) %>%
+    dplyr::select(row, col, header = chr) %>%
     split(.$row) # Separate each row of headers
-  expect_true(tibble::is_tibble(pad(datacells)))
-  expect_true(tibble::is_tibble(anchor(cells, 1, 1)))
-  expect_true(tibble::is_tibble(ABOVE(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(BELOW(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(LEFT(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(RIGHT(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(N(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(E(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(S(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(W(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(NNE(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(NNW(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(ENE(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(ESE(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(SSE(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(SSW(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(WSW(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(WNW(datacells, col_headers$`1`)))
-  expect_true(tibble::is_tibble(extend(datacells, cells, "N", 1)))
-  expect_true(tibble::is_tibble(extend(datacells, cells, "N", boundary = ~ TRUE)))
+  row_headers <-
+    cells %>%
+    dplyr::filter(col <= 2) %>%
+    dplyr::select(row, col, header = chr) %>%
+    split(.$col) # Separate each row of headers
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "ABOVE")))
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "BELOW")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "LEFT")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "RIGHT")))
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "N")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "E")))
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "S")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "W")))
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "NNE")))
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "NNW")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "ENE")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "ESE")))
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "SSE")))
+  expect_true(tibble::is_tibble(enhead(data_cells, col_headers$`1`, "SSW")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "WSW")))
+  expect_true(tibble::is_tibble(enhead(data_cells, row_headers$`1`, "WNW")))
 })
-
-
