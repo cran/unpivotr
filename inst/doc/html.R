@@ -16,7 +16,7 @@ rowspan %>%
 # unpivotr
 rowspan %>%
   read_html() %>%
-  tidy_table()
+  as_cells()
 
 ## ---- echo = TRUE--------------------------------------------------------
 colspan <- system.file("extdata", "colspan.html", package = "unpivotr")
@@ -30,7 +30,7 @@ colspan %>%
 # unpivotr
 colspan %>%
   read_html() %>%
-  tidy_table()
+  as_cells()
 
 ## ---- echo = TRUE--------------------------------------------------------
 rowandcolspan <- system.file("extdata",
@@ -46,7 +46,7 @@ rowandcolspan %>%
 # unpivotr
 rowandcolspan %>%
   read_html() %>%
-  tidy_table()
+  as_cells()
 
 ## ---- echo = TRUE--------------------------------------------------------
 nested <- system.file("extdata", "nested.html", package = "unpivotr")
@@ -61,21 +61,21 @@ nested %>%
 x <-
   nested %>%
   read_html() %>%
-  tidy_table() %>%
+  as_cells() %>%
   .[[1]]
 x
 
 # The html of the table inside a cell
 cell <-
   x %>%
-  filter(row == 2, col == 2) %>%
+  dplyr::filter(row == 2, col == 2) %>%
   .$html
 cell
 
 # Parsing the table inside the cell
 cell %>%
   read_html() %>%
-  tidy_table()
+  as_cells()
 
 ## ---- echo = TRUE--------------------------------------------------------
 urls <- system.file("extdata", "url.html", package = "unpivotr")
@@ -99,7 +99,7 @@ cell_text <- function(x) {
 
 urls %>%
   read_html() %>%
-  tidy_table() %>%
+  as_cells() %>%
   .[[1]] %>%
   mutate(text = purrr::map(html, cell_text),
          url = purrr::map(html, cell_url)) %>%

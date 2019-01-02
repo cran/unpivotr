@@ -12,7 +12,7 @@
 
 <meta name="author" content="Duncan Garmonsway" />
 
-<meta name="date" content="2018-06-26" />
+<meta name="date" content="2019-01-02" />
 
 <title>Compass Directions</title>
 
@@ -22,7 +22,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -35,13 +35,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -280,7 +278,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Compass Directions</h1>
 <h4 class="author"><em>Duncan Garmonsway</em></h4>
-<h4 class="date"><em>2018-06-26</em></h4>
+<h4 class="date"><em>2019-01-02</em></h4>
 
 
 <div id="TOC">
@@ -343,24 +341,24 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <p>This vignette for the <a href="https://github.com/nacnudus/unpivotr">unpivotr</a> package demonstrates unpivoting pivot tables of various kinds imported from a spreadsheet via the <a href="https://github.com/nacnudus/tidyxl">tidyxl</a> package. It is best read with the spreadsheet open in a spreadsheet program, e.g. Excel, LibreOffice Calc or Gnumeric.</p>
 <p>The spreadsheet is in the package directory at <code>system.file(&quot;extdata&quot;, &quot;purpose.xlsx&quot;, package = &quot;unpivotr&quot;)</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
 ## 
 ##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(tidyxl)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">library</span>(unpivotr)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">library</span>(tidyxl)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">library</span>(unpivotr)</a></code></pre></div>
 <div id="nnw-wnw-example" class="section level2">
 <h2>NNW WNW example</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">(original &lt;-<span class="st"> </span>purpose<span class="op">$</span><span class="st">`</span><span class="dt">NNW WNW</span><span class="st">`</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">(original &lt;-<span class="st"> </span>purpose<span class="op">$</span><span class="st">`</span><span class="dt">NNW WNW</span><span class="st">`</span>)</a></code></pre></div>
 <pre><code>##                            X2      X3     X4     X5    X6     X7
 ## 1                        &lt;NA&gt;    &lt;NA&gt; Female   &lt;NA&gt;  Male   &lt;NA&gt;
 ## 2                        &lt;NA&gt;    &lt;NA&gt;  0 - 6 7 - 10 0 - 6 7 - 10
-## 3           Bachelor's degree 15 - 24   7000  27000  &lt;NA&gt;  13000
+## 3           Bachelor&#39;s degree 15 - 24   7000  27000  &lt;NA&gt;  13000
 ## 4                        &lt;NA&gt; 25 - 44  12000 137000  9000  81000
 ## 5                        &lt;NA&gt; 45 - 64  10000  64000  7000  66000
 ## 6                        &lt;NA&gt;     65+   &lt;NA&gt;  18000  7000  17000
@@ -380,8 +378,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 20                       &lt;NA&gt; 25 - 44   5000  86000  7000  60000
 ## 21                       &lt;NA&gt; 45 - 64   6000  55000  6000  68000
 ## 22                       &lt;NA&gt;     65+   &lt;NA&gt;  13000  &lt;NA&gt;  18000</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">tail</span>(cells &lt;-<span class="st"> </span><span class="kw">tidy_table</span>(original))</a></code></pre></div>
-<pre><code>## tidy_table() will be deprecated.  Use as_cells() instead.</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">tail</span>(cells &lt;-<span class="st"> </span><span class="kw">as_cells</span>(original))</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##     row   col data_type chr  
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;
@@ -393,17 +390,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 6    22     6 chr       18000</code></pre>
 <div id="headers" class="section level3">
 <h3>Headers</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">row_headers &lt;-</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Select all rows of headers at once</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col) <span class="co"># Return each row of headers in its own element of a list</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">row_headers &lt;-</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Select all rows of headers at once</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col) <span class="co"># Return each row of headers in its own element of a list</span></a>
+<a class="sourceLine" id="cb10-6" title="6">row_headers</a></code></pre></div>
 <pre><code>## $`1`
 ## # A tibble: 5 x 3
 ##     row   col header                    
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-## 1     3     1 Bachelor's degree         
+## 1     3     1 Bachelor&#39;s degree         
 ## 2     7     1 Certificate               
 ## 3    11     1 Diploma                   
 ## 4    15     1 No Qualification          
@@ -433,12 +430,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 18    20     2 25 - 44
 ## 19    21     2 45 - 64
 ## 20    22     2 65+</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb12-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`1`
 ## # A tibble: 2 x 3
 ##     row   col header
@@ -457,12 +454,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data" class="section level3">
 <h3>Data</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw">head</span>(data_cells)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="kw">head</span>(data_cells)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##     row   col value
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -475,31 +472,31 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="join-headers-to-data" class="section level3">
 <h3>Join headers to data</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;NNW&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;WNW&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;NNW&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;WNW&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>)</a></code></pre></div>
 </div>
 <div id="result" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header           header.data.data
-## 1    3   3   7000      Female         0 - 6          Bachelor's degree
-## 2    4   3  12000      Female         0 - 6          Bachelor's degree
-## 3    5   3  10000      Female         0 - 6          Bachelor's degree
-## 4    3   4  27000      Female        7 - 10          Bachelor's degree
-## 5    4   4 137000      Female        7 - 10          Bachelor's degree
-## 6    5   4  64000      Female        7 - 10          Bachelor's degree
-## 7    6   4  18000      Female        7 - 10          Bachelor's degree
-## 8    4   5   9000        Male         0 - 6          Bachelor's degree
-## 9    5   5   7000        Male         0 - 6          Bachelor's degree
-## 10   6   5   7000        Male         0 - 6          Bachelor's degree
-## 11   3   6  13000        Male        7 - 10          Bachelor's degree
-## 12   4   6  81000        Male        7 - 10          Bachelor's degree
-## 13   5   6  66000        Male        7 - 10          Bachelor's degree
-## 14   6   6  17000        Male        7 - 10          Bachelor's degree
+## 1    3   3   7000      Female         0 - 6          Bachelor&#39;s degree
+## 2    4   3  12000      Female         0 - 6          Bachelor&#39;s degree
+## 3    5   3  10000      Female         0 - 6          Bachelor&#39;s degree
+## 4    3   4  27000      Female        7 - 10          Bachelor&#39;s degree
+## 5    4   4 137000      Female        7 - 10          Bachelor&#39;s degree
+## 6    5   4  64000      Female        7 - 10          Bachelor&#39;s degree
+## 7    6   4  18000      Female        7 - 10          Bachelor&#39;s degree
+## 8    4   5   9000        Male         0 - 6          Bachelor&#39;s degree
+## 9    5   5   7000        Male         0 - 6          Bachelor&#39;s degree
+## 10   6   5   7000        Male         0 - 6          Bachelor&#39;s degree
+## 11   3   6  13000        Male        7 - 10          Bachelor&#39;s degree
+## 12   4   6  81000        Male        7 - 10          Bachelor&#39;s degree
+## 13   5   6  66000        Male        7 - 10          Bachelor&#39;s degree
+## 14   6   6  17000        Male        7 - 10          Bachelor&#39;s degree
 ## 15   7   3  29000      Female         0 - 6                Certificate
 ## 16   8   3  34000      Female         0 - 6                Certificate
 ## 17   9   3  30000      Female         0 - 6                Certificate
@@ -631,26 +628,25 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 70              25 - 44
 ## 71              45 - 64
 ## 72                  65+</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">NNW_WNW &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">NNW_WNW &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="nne-wsw-example" class="section level2">
 <h2>NNE WSW example</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">cells &lt;-<span class="st"> </span><span class="kw">tidy_table</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">NNE WSW</span><span class="st">`</span>)</a></code></pre></div>
-<pre><code>## tidy_table() will be deprecated.  Use as_cells() instead.</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">cells &lt;-<span class="st"> </span><span class="kw">as_cells</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">NNE WSW</span><span class="st">`</span>)</a></code></pre></div>
 <div id="headers-same-as-nnw-wnw" class="section level3">
 <h3>Headers (same as NNW WNW)</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">row_headers &lt;-</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
-<a class="sourceLine" id="cb23-6" data-line-number="6">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">row_headers &lt;-</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
+<a class="sourceLine" id="cb21-6" title="6">row_headers</a></code></pre></div>
 <pre><code>## $`1`
 ## # A tibble: 5 x 3
 ##     row   col header                    
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-## 1     6     1 Bachelor's degree         
+## 1     6     1 Bachelor&#39;s degree         
 ## 2    10     1 Certificate               
 ## 3    14     1 Diploma                   
 ## 4    18     1 No Qualification          
@@ -680,12 +676,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 18    20     2 25 - 44
 ## 19    21     2 45 - 64
 ## 20    22     2 65+</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb23-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`1`
 ## # A tibble: 2 x 3
 ##     row   col header
@@ -704,12 +700,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data-same-as-nnw-wnw" class="section level3">
 <h3>Data (same as NNW WNW)</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb27-6" data-line-number="6">data_cells</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb25-6" title="6">data_cells</a></code></pre></div>
 <pre><code>## # A tibble: 72 x 3
 ##      row   col value
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -723,35 +719,35 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8    12     3 10000
 ##  9    13     3  6000
 ## 10    14     3  5000
-## # ... with 62 more rows</code></pre>
+## # … with 62 more rows</code></pre>
 </div>
 <div id="join-headers-to-data-different-from-nnw-wnw" class="section level3">
 <h3>Join headers to data (different from NNW WNW)</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;NNE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from NNW WNW</span></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as NNW WNW</span></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;WSW&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from NNW WNW</span></a>
-<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>) <span class="co"># Same as NNW WNW</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;NNE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from NNW WNW</span></a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as NNW WNW</span></a>
+<a class="sourceLine" id="cb27-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;WSW&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from NNW WNW</span></a>
+<a class="sourceLine" id="cb27-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>) <span class="co"># Same as NNW WNW</span></a></code></pre></div>
 </div>
 <div id="result-1" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header           header.data.data
-## 1    3   3   7000      Female         0 - 6          Bachelor's degree
-## 2    4   3  12000      Female         0 - 6          Bachelor's degree
-## 3    5   3  10000      Female         0 - 6          Bachelor's degree
-## 4    3   4  27000      Female        7 - 10          Bachelor's degree
-## 5    4   4 137000      Female        7 - 10          Bachelor's degree
-## 6    5   4  64000      Female        7 - 10          Bachelor's degree
-## 7    6   4  18000      Female        7 - 10          Bachelor's degree
-## 8    4   5   9000        Male         0 - 6          Bachelor's degree
-## 9    5   5   7000        Male         0 - 6          Bachelor's degree
-## 10   6   5   7000        Male         0 - 6          Bachelor's degree
-## 11   3   6  13000        Male        7 - 10          Bachelor's degree
-## 12   4   6  81000        Male        7 - 10          Bachelor's degree
-## 13   5   6  66000        Male        7 - 10          Bachelor's degree
-## 14   6   6  17000        Male        7 - 10          Bachelor's degree
+## 1    3   3   7000      Female         0 - 6          Bachelor&#39;s degree
+## 2    4   3  12000      Female         0 - 6          Bachelor&#39;s degree
+## 3    5   3  10000      Female         0 - 6          Bachelor&#39;s degree
+## 4    3   4  27000      Female        7 - 10          Bachelor&#39;s degree
+## 5    4   4 137000      Female        7 - 10          Bachelor&#39;s degree
+## 6    5   4  64000      Female        7 - 10          Bachelor&#39;s degree
+## 7    6   4  18000      Female        7 - 10          Bachelor&#39;s degree
+## 8    4   5   9000        Male         0 - 6          Bachelor&#39;s degree
+## 9    5   5   7000        Male         0 - 6          Bachelor&#39;s degree
+## 10   6   5   7000        Male         0 - 6          Bachelor&#39;s degree
+## 11   3   6  13000        Male        7 - 10          Bachelor&#39;s degree
+## 12   4   6  81000        Male        7 - 10          Bachelor&#39;s degree
+## 13   5   6  66000        Male        7 - 10          Bachelor&#39;s degree
+## 14   6   6  17000        Male        7 - 10          Bachelor&#39;s degree
 ## 15   7   3  29000      Female         0 - 6                Certificate
 ## 16   8   3  34000      Female         0 - 6                Certificate
 ## 17   9   3  30000      Female         0 - 6                Certificate
@@ -883,21 +879,20 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 70              25 - 44
 ## 71              45 - 64
 ## 72                  65+</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">NNE_WSW &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">NNE_WSW &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="sse-ese-example" class="section level2">
 <h2>SSE ESE example</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">cells &lt;-<span class="st"> </span><span class="kw">tidy_table</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">SSE ESE</span><span class="st">`</span>)</a></code></pre></div>
-<pre><code>## tidy_table() will be deprecated.  Use as_cells() instead.</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">cells &lt;-<span class="st"> </span><span class="kw">as_cells</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">SSE ESE</span><span class="st">`</span>)</a></code></pre></div>
 <div id="headers-1" class="section level3">
 <h3>Headers</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">row_headers &lt;-</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
-<a class="sourceLine" id="cb35-6" data-line-number="6">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">row_headers &lt;-</a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
+<a class="sourceLine" id="cb32-6" title="6">row_headers</a></code></pre></div>
 <pre><code>## $`5`
 ## # A tibble: 20 x 3
 ##      row   col header 
@@ -927,17 +922,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## # A tibble: 5 x 3
 ##     row   col header                    
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-## 1     4     6 Bachelor's degree         
+## 1     4     6 Bachelor&#39;s degree         
 ## 2     8     6 Certificate               
 ## 3    12     6 Diploma                   
 ## 4    16     6 No Qualification          
 ## 5    20     6 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">21</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb37-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">21</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb34-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`21`
 ## # A tibble: 4 x 3
 ##     row   col header
@@ -956,12 +951,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data-1" class="section level3">
 <h3>Data</h3>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb39-6" data-line-number="6">data_cells</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb36-6" title="6">data_cells</a></code></pre></div>
 <pre><code>## # A tibble: 72 x 3
 ##      row   col value
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -975,35 +970,35 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8    10     1 10000
 ##  9    11     1  6000
 ## 10    12     1  5000
-## # ... with 62 more rows</code></pre>
+## # … with 62 more rows</code></pre>
 </div>
 <div id="join-headers-to-data-1" class="section level3">
 <h3>Join headers to data</h3>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;SSE&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;ESE&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;SSE&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;ESE&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>)</a></code></pre></div>
 </div>
 <div id="result-2" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header           header.data.data
-## 1    1   1   7000      Female         0 - 6          Bachelor's degree
-## 2    2   1  12000      Female         0 - 6          Bachelor's degree
-## 3    3   1  10000      Female         0 - 6          Bachelor's degree
-## 4    1   2  27000      Female        7 - 10          Bachelor's degree
-## 5    2   2 137000      Female        7 - 10          Bachelor's degree
-## 6    3   2  64000      Female        7 - 10          Bachelor's degree
-## 7    4   2  18000      Female        7 - 10          Bachelor's degree
-## 8    2   3   9000        Male         0 - 6          Bachelor's degree
-## 9    3   3   7000        Male         0 - 6          Bachelor's degree
-## 10   4   3   7000        Male         0 - 6          Bachelor's degree
-## 11   1   4  13000        Male        7 - 10          Bachelor's degree
-## 12   2   4  81000        Male        7 - 10          Bachelor's degree
-## 13   3   4  66000        Male        7 - 10          Bachelor's degree
-## 14   4   4  17000        Male        7 - 10          Bachelor's degree
+## 1    1   1   7000      Female         0 - 6          Bachelor&#39;s degree
+## 2    2   1  12000      Female         0 - 6          Bachelor&#39;s degree
+## 3    3   1  10000      Female         0 - 6          Bachelor&#39;s degree
+## 4    1   2  27000      Female        7 - 10          Bachelor&#39;s degree
+## 5    2   2 137000      Female        7 - 10          Bachelor&#39;s degree
+## 6    3   2  64000      Female        7 - 10          Bachelor&#39;s degree
+## 7    4   2  18000      Female        7 - 10          Bachelor&#39;s degree
+## 8    2   3   9000        Male         0 - 6          Bachelor&#39;s degree
+## 9    3   3   7000        Male         0 - 6          Bachelor&#39;s degree
+## 10   4   3   7000        Male         0 - 6          Bachelor&#39;s degree
+## 11   1   4  13000        Male        7 - 10          Bachelor&#39;s degree
+## 12   2   4  81000        Male        7 - 10          Bachelor&#39;s degree
+## 13   3   4  66000        Male        7 - 10          Bachelor&#39;s degree
+## 14   4   4  17000        Male        7 - 10          Bachelor&#39;s degree
 ## 15   5   1  29000      Female         0 - 6                Certificate
 ## 16   6   1  34000      Female         0 - 6                Certificate
 ## 17   7   1  30000      Female         0 - 6                Certificate
@@ -1135,21 +1130,20 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 70              25 - 44
 ## 71              45 - 64
 ## 72                  65+</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">SSE_ESE &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">SSE_ESE &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="ssw-ene-example" class="section level2">
 <h2>SSW ENE example</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">cells &lt;-<span class="st"> </span><span class="kw">tidy_table</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">SSW ENE</span><span class="st">`</span>)</a></code></pre></div>
-<pre><code>## tidy_table() will be deprecated.  Use as_cells() instead.</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">cells &lt;-<span class="st"> </span><span class="kw">as_cells</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">SSW ENE</span><span class="st">`</span>)</a></code></pre></div>
 <div id="headers-same-as-sse-ese" class="section level3">
 <h3>Headers (same as SSE ESE)</h3>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">row_headers &lt;-</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
-<a class="sourceLine" id="cb47-6" data-line-number="6">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">row_headers &lt;-</a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
+<a class="sourceLine" id="cb43-6" title="6">row_headers</a></code></pre></div>
 <pre><code>## $`5`
 ## # A tibble: 20 x 3
 ##      row   col header 
@@ -1179,17 +1173,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## # A tibble: 5 x 3
 ##     row   col header                    
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-## 1     1     6 Bachelor's degree         
+## 1     1     6 Bachelor&#39;s degree         
 ## 2     5     6 Certificate               
 ## 3     9     6 Diploma                   
 ## 4    13     6 No Qualification          
 ## 5    17     6 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">21</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb49-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">21</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb45-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`21`
 ## # A tibble: 4 x 3
 ##     row   col header
@@ -1208,12 +1202,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data-same-as-sse-ese" class="section level3">
 <h3>Data (same as SSE ESE)</h3>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb51-6" data-line-number="6">data_cells</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb47-6" title="6">data_cells</a></code></pre></div>
 <pre><code>## # A tibble: 72 x 3
 ##      row   col value
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -1227,35 +1221,35 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8    10     1 10000
 ##  9    11     1  6000
 ## 10    12     1  5000
-## # ... with 62 more rows</code></pre>
+## # … with 62 more rows</code></pre>
 </div>
 <div id="join-headers-to-data-2" class="section level3">
 <h3>Join headers to data</h3>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;SSW&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as SSE ESE</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;ENE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>) <span class="co"># Same as SSE ESE</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;SSW&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
+<a class="sourceLine" id="cb49-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as SSE ESE</span></a>
+<a class="sourceLine" id="cb49-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;ENE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
+<a class="sourceLine" id="cb49-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>) <span class="co"># Same as SSE ESE</span></a></code></pre></div>
 </div>
 <div id="result-3" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header           header.data.data
-## 1    1   1   7000      Female         0 - 6          Bachelor's degree
-## 2    2   1  12000      Female         0 - 6          Bachelor's degree
-## 3    3   1  10000      Female         0 - 6          Bachelor's degree
-## 4    1   2  27000      Female        7 - 10          Bachelor's degree
-## 5    2   2 137000      Female        7 - 10          Bachelor's degree
-## 6    3   2  64000      Female        7 - 10          Bachelor's degree
-## 7    4   2  18000      Female        7 - 10          Bachelor's degree
-## 8    2   3   9000        Male         0 - 6          Bachelor's degree
-## 9    3   3   7000        Male         0 - 6          Bachelor's degree
-## 10   4   3   7000        Male         0 - 6          Bachelor's degree
-## 11   1   4  13000        Male        7 - 10          Bachelor's degree
-## 12   2   4  81000        Male        7 - 10          Bachelor's degree
-## 13   3   4  66000        Male        7 - 10          Bachelor's degree
-## 14   4   4  17000        Male        7 - 10          Bachelor's degree
+## 1    1   1   7000      Female         0 - 6          Bachelor&#39;s degree
+## 2    2   1  12000      Female         0 - 6          Bachelor&#39;s degree
+## 3    3   1  10000      Female         0 - 6          Bachelor&#39;s degree
+## 4    1   2  27000      Female        7 - 10          Bachelor&#39;s degree
+## 5    2   2 137000      Female        7 - 10          Bachelor&#39;s degree
+## 6    3   2  64000      Female        7 - 10          Bachelor&#39;s degree
+## 7    4   2  18000      Female        7 - 10          Bachelor&#39;s degree
+## 8    2   3   9000        Male         0 - 6          Bachelor&#39;s degree
+## 9    3   3   7000        Male         0 - 6          Bachelor&#39;s degree
+## 10   4   3   7000        Male         0 - 6          Bachelor&#39;s degree
+## 11   1   4  13000        Male        7 - 10          Bachelor&#39;s degree
+## 12   2   4  81000        Male        7 - 10          Bachelor&#39;s degree
+## 13   3   4  66000        Male        7 - 10          Bachelor&#39;s degree
+## 14   4   4  17000        Male        7 - 10          Bachelor&#39;s degree
 ## 15   5   1  29000      Female         0 - 6                Certificate
 ## 16   6   1  34000      Female         0 - 6                Certificate
 ## 17   7   1  30000      Female         0 - 6                Certificate
@@ -1387,30 +1381,29 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 70              25 - 44
 ## 71              45 - 64
 ## 72                  65+</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">SSW_ENE &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">SSW_ENE &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="check-that-all-sheets-are-parsed-correctly" class="section level2">
 <h2>Check that all sheets are parsed correctly</h2>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">identical</span>(NNW_WNW, NNE_WSW)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">identical</span>(NNW_WNW, NNE_WSW)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">identical</span>(SSW_ENE, SSE_ESE)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">identical</span>(SSW_ENE, SSE_ESE)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">identical</span>(NNW_WNW[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], SSW_ENE[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">identical</span>(NNW_WNW[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], SSW_ENE[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="above-left-example" class="section level2">
 <h2>ABOVE LEFT example</h2>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">cells &lt;-<span class="st"> </span><span class="kw">tidy_table</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">ABOVE LEFT</span><span class="st">`</span>)</a></code></pre></div>
-<pre><code>## tidy_table() will be deprecated.  Use as_cells() instead.</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">cells &lt;-<span class="st"> </span><span class="kw">as_cells</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">ABOVE LEFT</span><span class="st">`</span>)</a></code></pre></div>
 <div id="headers-2" class="section level3">
 <h3>Headers</h3>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">row_headers &lt;-</a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
-<a class="sourceLine" id="cb65-6" data-line-number="6">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">row_headers &lt;-</a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
+<a class="sourceLine" id="cb60-6" title="6">row_headers</a></code></pre></div>
 <pre><code>## $`1`
 ## # A tibble: 2 x 3
 ##     row   col header
@@ -1422,22 +1415,22 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## # A tibble: 10 x 3
 ##      row   col header                    
 ##    &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-##  1     3     2 Bachelor's degree         
+##  1     3     2 Bachelor&#39;s degree         
 ##  2     4     2 Certificate               
 ##  3     5     2 Diploma                   
 ##  4     6     2 No Qualification          
 ##  5     7     2 Postgraduate qualification
-##  6     8     2 Bachelor's degree         
+##  6     8     2 Bachelor&#39;s degree         
 ##  7     9     2 Certificate               
 ##  8    10     2 Diploma                   
 ##  9    11     2 No Qualification          
 ## 10    12     2 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb67-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb62-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`1`
 ## # A tibble: 2 x 3
 ##     row   col header
@@ -1458,12 +1451,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data-2" class="section level3">
 <h3>Data</h3>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb69-6" data-line-number="6">data_cells</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb64-6" title="6">data_cells</a></code></pre></div>
 <pre><code>## # A tibble: 55 x 3
 ##      row   col value
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -1477,20 +1470,20 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8     4     4 34000
 ##  9     5     4 10000
 ## 10     6     4 11000
-## # ... with 45 more rows</code></pre>
+## # … with 45 more rows</code></pre>
 </div>
 <div id="join-headers-to-data-3" class="section level3">
 <h3>Join headers to data</h3>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;ABOVE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
-<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as SSE ESE</span></a>
-<a class="sourceLine" id="cb71-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;LEFT&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
-<a class="sourceLine" id="cb71-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>) <span class="co"># Same as SSE ESE</span></a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;ABOVE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as SSE ESE</span></a>
+<a class="sourceLine" id="cb66-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;LEFT&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from SSE ESE</span></a>
+<a class="sourceLine" id="cb66-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>) <span class="co"># Same as SSE ESE</span></a></code></pre></div>
 </div>
 <div id="result-4" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header header.data.data
 ## 1    3   3   7000       0 - 6       15 - 24           Female
 ## 2    4   3  29000       0 - 6       15 - 24           Female
@@ -1548,30 +1541,30 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 54  11   8  75000      7 - 10       45 - 64             Male
 ## 55  12   8  68000      7 - 10       45 - 64             Male
 ##          header.header.header
-## 1           Bachelor's degree
+## 1           Bachelor&#39;s degree
 ## 2                 Certificate
 ## 3            No Qualification
-## 4           Bachelor's degree
+## 4           Bachelor&#39;s degree
 ## 5                 Certificate
 ## 6                     Diploma
 ## 7            No Qualification
 ## 8  Postgraduate qualification
-## 9           Bachelor's degree
+## 9           Bachelor&#39;s degree
 ## 10                Certificate
 ## 11                    Diploma
 ## 12           No Qualification
 ## 13 Postgraduate qualification
-## 14          Bachelor's degree
+## 14          Bachelor&#39;s degree
 ## 15                Certificate
 ## 16                    Diploma
 ## 17           No Qualification
 ## 18 Postgraduate qualification
-## 19          Bachelor's degree
+## 19          Bachelor&#39;s degree
 ## 20                Certificate
 ## 21                    Diploma
 ## 22           No Qualification
 ## 23 Postgraduate qualification
-## 24          Bachelor's degree
+## 24          Bachelor&#39;s degree
 ## 25                Certificate
 ## 26                    Diploma
 ## 27           No Qualification
@@ -1579,55 +1572,54 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 29                Certificate
 ## 30                    Diploma
 ## 31           No Qualification
-## 32          Bachelor's degree
+## 32          Bachelor&#39;s degree
 ## 33                Certificate
 ## 34                    Diploma
 ## 35           No Qualification
 ## 36 Postgraduate qualification
-## 37          Bachelor's degree
+## 37          Bachelor&#39;s degree
 ## 38                Certificate
 ## 39                    Diploma
 ## 40           No Qualification
 ## 41 Postgraduate qualification
-## 42          Bachelor's degree
+## 42          Bachelor&#39;s degree
 ## 43                Certificate
 ## 44                    Diploma
 ## 45           No Qualification
-## 46          Bachelor's degree
+## 46          Bachelor&#39;s degree
 ## 47                Certificate
 ## 48                    Diploma
 ## 49           No Qualification
 ## 50 Postgraduate qualification
-## 51          Bachelor's degree
+## 51          Bachelor&#39;s degree
 ## 52                Certificate
 ## 53                    Diploma
 ## 54           No Qualification
 ## 55 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">ABOVE_LEFT &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">ABOVE_LEFT &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="below-right-example" class="section level2">
 <h2>BELOW RIGHT example</h2>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">cells &lt;-<span class="st"> </span><span class="kw">tidy_table</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">BELOW RIGHT</span><span class="st">`</span>)</a></code></pre></div>
-<pre><code>## tidy_table() will be deprecated.  Use as_cells() instead.</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">cells &lt;-<span class="st"> </span><span class="kw">as_cells</span>(purpose<span class="op">$</span><span class="st">`</span><span class="dt">BELOW RIGHT</span><span class="st">`</span>)</a></code></pre></div>
 <div id="headers-3" class="section level3">
 <h3>Headers</h3>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">row_headers &lt;-</a>
-<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">7</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb77-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb77-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
-<a class="sourceLine" id="cb77-6" data-line-number="6">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">row_headers &lt;-</a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">7</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
+<a class="sourceLine" id="cb71-6" title="6">row_headers</a></code></pre></div>
 <pre><code>## $`7`
 ## # A tibble: 10 x 3
 ##      row   col header                    
 ##    &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-##  1     1     7 Bachelor's degree         
+##  1     1     7 Bachelor&#39;s degree         
 ##  2     2     7 Certificate               
 ##  3     3     7 Diploma                   
 ##  4     4     7 No Qualification          
 ##  5     5     7 Postgraduate qualification
-##  6     6     7 Bachelor's degree         
+##  6     6     7 Bachelor&#39;s degree         
 ##  7     7     7 Certificate               
 ##  8     8     7 Diploma                   
 ##  9     9     7 No Qualification          
@@ -1639,12 +1631,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt; 
 ## 1     3     8 Female
 ## 2     8     8 Male</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">11</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb79-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">11</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb73-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`11`
 ## # A tibble: 6 x 3
 ##     row   col header 
@@ -1665,12 +1657,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data-3" class="section level3">
 <h3>Data</h3>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb81-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb81-6" data-line-number="6">data_cells</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span>, <span class="op">!</span><span class="kw">is.na</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(chr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb75-6" title="6">data_cells</a></code></pre></div>
 <pre><code>## # A tibble: 55 x 3
 ##      row   col value
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -1684,20 +1676,20 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8     2     2 34000
 ##  9     3     2 10000
 ## 10     4     2 11000
-## # ... with 45 more rows</code></pre>
+## # … with 45 more rows</code></pre>
 </div>
 <div id="join-headers-to-data-4" class="section level3">
 <h3>Join headers to data</h3>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb83-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;BELOW&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb83-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb83-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;RIGHT&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb83-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb77-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;BELOW&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;RIGHT&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>)</a></code></pre></div>
 </div>
 <div id="result-5" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header header.data.data
 ## 1    1   1   7000       0 - 6       15 - 24           Female
 ## 2    2   1  29000       0 - 6       15 - 24           Female
@@ -1755,30 +1747,30 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 54   9   6  75000      7 - 10       45 - 64             Male
 ## 55  10   6  68000      7 - 10       45 - 64             Male
 ##          header.header.header
-## 1           Bachelor's degree
+## 1           Bachelor&#39;s degree
 ## 2                 Certificate
 ## 3            No Qualification
-## 4           Bachelor's degree
+## 4           Bachelor&#39;s degree
 ## 5                 Certificate
 ## 6                     Diploma
 ## 7            No Qualification
 ## 8  Postgraduate qualification
-## 9           Bachelor's degree
+## 9           Bachelor&#39;s degree
 ## 10                Certificate
 ## 11                    Diploma
 ## 12           No Qualification
 ## 13 Postgraduate qualification
-## 14          Bachelor's degree
+## 14          Bachelor&#39;s degree
 ## 15                Certificate
 ## 16                    Diploma
 ## 17           No Qualification
 ## 18 Postgraduate qualification
-## 19          Bachelor's degree
+## 19          Bachelor&#39;s degree
 ## 20                Certificate
 ## 21                    Diploma
 ## 22           No Qualification
 ## 23 Postgraduate qualification
-## 24          Bachelor's degree
+## 24          Bachelor&#39;s degree
 ## 25                Certificate
 ## 26                    Diploma
 ## 27           No Qualification
@@ -1786,53 +1778,53 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 29                Certificate
 ## 30                    Diploma
 ## 31           No Qualification
-## 32          Bachelor's degree
+## 32          Bachelor&#39;s degree
 ## 33                Certificate
 ## 34                    Diploma
 ## 35           No Qualification
 ## 36 Postgraduate qualification
-## 37          Bachelor's degree
+## 37          Bachelor&#39;s degree
 ## 38                Certificate
 ## 39                    Diploma
 ## 40           No Qualification
 ## 41 Postgraduate qualification
-## 42          Bachelor's degree
+## 42          Bachelor&#39;s degree
 ## 43                Certificate
 ## 44                    Diploma
 ## 45           No Qualification
-## 46          Bachelor's degree
+## 46          Bachelor&#39;s degree
 ## 47                Certificate
 ## 48                    Diploma
 ## 49           No Qualification
 ## 50 Postgraduate qualification
-## 51          Bachelor's degree
+## 51          Bachelor&#39;s degree
 ## 52                Certificate
 ## 53                    Diploma
 ## 54           No Qualification
 ## 55 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">BELOW_RIGHT &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">BELOW_RIGHT &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="check-that-all-sheets-are-parsed-correctly-1" class="section level2">
 <h2>Check that all sheets are parsed correctly</h2>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], BELOW_RIGHT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], BELOW_RIGHT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="above-left-border-example" class="section level2">
 <h2>ABOVE LEFT border example</h2>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">spreadsheet &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/purpose.xlsx&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</a>
-<a class="sourceLine" id="cb89-2" data-line-number="2">cells &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet, <span class="st">&quot;ABOVE LEFT border&quot;</span>)<span class="op">$</span>data[[<span class="dv">1</span>]]</a></code></pre></div>
-<pre><code>## Warning: 'tidy_xlsx()' is deprecated.
-## Use 'xlsx_cells()' or 'xlsx_formats()' instead.</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1">spreadsheet &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata/purpose.xlsx&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</a>
+<a class="sourceLine" id="cb83-2" title="2">cells &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet, <span class="st">&quot;ABOVE LEFT border&quot;</span>)<span class="op">$</span>data[[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>## Warning: &#39;tidy_xlsx()&#39; is deprecated.
+## Use &#39;xlsx_cells()&#39; or &#39;xlsx_formats()&#39; instead.</code></pre>
 <div id="headers-4" class="section level3">
 <h3>Headers</h3>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="co"># Same as ABOVE LEFT without borders</span></a>
-<a class="sourceLine" id="cb91-2" data-line-number="2">row_headers &lt;-</a>
-<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
-<a class="sourceLine" id="cb91-7" data-line-number="7">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Same as ABOVE LEFT without borders</span></a>
+<a class="sourceLine" id="cb85-2" title="2">row_headers &lt;-</a>
+<a class="sourceLine" id="cb85-3" title="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-6" title="6"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
+<a class="sourceLine" id="cb85-7" title="7">row_headers</a></code></pre></div>
 <pre><code>## $`2`
 ## # A tibble: 2 x 3
 ##     row   col header
@@ -1844,22 +1836,22 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## # A tibble: 10 x 3
 ##      row   col header                    
 ##    &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-##  1     4     3 Bachelor's degree         
+##  1     4     3 Bachelor&#39;s degree         
 ##  2     5     3 Certificate               
 ##  3     6     3 Diploma                   
 ##  4     7     3 No Qualification          
 ##  5     8     3 Postgraduate qualification
-##  6     9     3 Bachelor's degree         
+##  6     9     3 Bachelor&#39;s degree         
 ##  7    10     3 Certificate               
 ##  8    11     3 Diploma                   
 ##  9    12     3 No Qualification          
 ## 10    13     3 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb93-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb87-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb87-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb87-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb87-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb87-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`2`
 ## # A tibble: 2 x 3
 ##     row   col header
@@ -1880,14 +1872,14 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data-4" class="section level3">
 <h3>Data</h3>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co"># Same as ABOVE LEFT without borders</span></a>
-<a class="sourceLine" id="cb95-2" data-line-number="2">data_cells &lt;-</a>
-<a class="sourceLine" id="cb95-3" data-line-number="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb95-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">content =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(character), numeric, <span class="ot">NA</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(content)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb95-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb95-8" data-line-number="8">data_cells</a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># Same as ABOVE LEFT without borders</span></a>
+<a class="sourceLine" id="cb89-2" title="2">data_cells &lt;-</a>
+<a class="sourceLine" id="cb89-3" title="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb89-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>, col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb89-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">content =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(character), numeric, <span class="ot">NA</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb89-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(content)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb89-7" title="7"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb89-8" title="8">data_cells</a></code></pre></div>
 <pre><code>## # A tibble: 55 x 3
 ##      row   col  value
 ##    &lt;int&gt; &lt;int&gt;  &lt;int&gt;
@@ -1901,39 +1893,39 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8     5     5  34000
 ##  9     5     6  30000
 ## 10     5     7 161000
-## # ... with 45 more rows</code></pre>
+## # … with 45 more rows</code></pre>
 </div>
 <div id="borders" class="section level3">
 <h3>Borders</h3>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="co"># Different from ABOVE LEFT without borders</span></a>
-<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="co"># Find cells with borders on the bottom, and ones with borders on the left</span></a>
-<a class="sourceLine" id="cb97-3" data-line-number="3">formatting &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet)<span class="op">$</span>formats</a></code></pre></div>
-<pre><code>## Warning: 'tidy_xlsx()' is deprecated.
-## Use 'xlsx_cells()' or 'xlsx_formats()' instead.</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">left_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>left<span class="op">$</span>style))</a>
-<a class="sourceLine" id="cb99-2" data-line-number="2">top_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>top<span class="op">$</span>style))</a>
-<a class="sourceLine" id="cb99-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb99-4" data-line-number="4">left_border_cells &lt;-</a>
-<a class="sourceLine" id="cb99-5" data-line-number="5"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb99-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>left_borders) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb99-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(row, col)</a>
-<a class="sourceLine" id="cb99-8" data-line-number="8">top_border_cells &lt;-</a>
-<a class="sourceLine" id="cb99-9" data-line-number="9"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb99-10" data-line-number="10"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>top_borders) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb99-11" data-line-number="11"><span class="st">  </span><span class="kw">select</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># Different from ABOVE LEFT without borders</span></a>
+<a class="sourceLine" id="cb91-2" title="2"><span class="co"># Find cells with borders on the bottom, and ones with borders on the left</span></a>
+<a class="sourceLine" id="cb91-3" title="3">formatting &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet)<span class="op">$</span>formats</a></code></pre></div>
+<pre><code>## Warning: &#39;tidy_xlsx()&#39; is deprecated.
+## Use &#39;xlsx_cells()&#39; or &#39;xlsx_formats()&#39; instead.</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">left_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>left<span class="op">$</span>style))</a>
+<a class="sourceLine" id="cb93-2" title="2">top_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>top<span class="op">$</span>style))</a>
+<a class="sourceLine" id="cb93-3" title="3"></a>
+<a class="sourceLine" id="cb93-4" title="4">left_border_cells &lt;-</a>
+<a class="sourceLine" id="cb93-5" title="5"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>left_borders) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-7" title="7"><span class="st">  </span><span class="kw">select</span>(row, col)</a>
+<a class="sourceLine" id="cb93-8" title="8">top_border_cells &lt;-</a>
+<a class="sourceLine" id="cb93-9" title="9"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>top_borders) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-11" title="11"><span class="st">  </span><span class="kw">select</span>(row, col)</a></code></pre></div>
 </div>
 <div id="join-headers-to-data-5" class="section level3">
 <h3>Join headers to data</h3>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;ABOVE&quot;</span>, left_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from ABOVE LEFT</span></a>
-<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as ABOVE LEFT</span></a>
-<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;LEFT&quot;</span>, top_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from ABOVE LEFT</span></a>
-<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>) <span class="co"># Same as ABOVE LEFT</span></a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb94-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb94-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;ABOVE&quot;</span>, left_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from ABOVE LEFT</span></a>
+<a class="sourceLine" id="cb94-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;N&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as ABOVE LEFT</span></a>
+<a class="sourceLine" id="cb94-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;LEFT&quot;</span>, top_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from ABOVE LEFT</span></a>
+<a class="sourceLine" id="cb94-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;W&quot;</span>) <span class="co"># Same as ABOVE LEFT</span></a></code></pre></div>
 </div>
 <div id="result-6" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header header.data.data
 ## 1    4   4   7000       0 - 6       15 - 24           Female
 ## 2    4   5  12000       0 - 6       25 - 44           Female
@@ -1991,10 +1983,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 54  13   8  60000      7 - 10       25 - 44             Male
 ## 55  13   9  68000      7 - 10       45 - 64             Male
 ##          header.header.header
-## 1           Bachelor's degree
-## 2           Bachelor's degree
-## 3           Bachelor's degree
-## 4           Bachelor's degree
+## 1           Bachelor&#39;s degree
+## 2           Bachelor&#39;s degree
+## 3           Bachelor&#39;s degree
+## 4           Bachelor&#39;s degree
 ## 5                 Certificate
 ## 6                 Certificate
 ## 7                 Certificate
@@ -2006,8 +1998,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 13           No Qualification
 ## 14           No Qualification
 ## 15           No Qualification
-## 16          Bachelor's degree
-## 17          Bachelor's degree
+## 16          Bachelor&#39;s degree
+## 17          Bachelor&#39;s degree
 ## 18                Certificate
 ## 19                Certificate
 ## 20                    Diploma
@@ -2017,9 +2009,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 24 Postgraduate qualification
 ## 25 Postgraduate qualification
 ## 26 Postgraduate qualification
-## 27          Bachelor's degree
-## 28          Bachelor's degree
-## 29          Bachelor's degree
+## 27          Bachelor&#39;s degree
+## 28          Bachelor&#39;s degree
+## 29          Bachelor&#39;s degree
 ## 30                Certificate
 ## 31                Certificate
 ## 32                Certificate
@@ -2036,8 +2028,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 43 Postgraduate qualification
 ## 44 Postgraduate qualification
 ## 45 Postgraduate qualification
-## 46          Bachelor's degree
-## 47          Bachelor's degree
+## 46          Bachelor&#39;s degree
+## 47          Bachelor&#39;s degree
 ## 48                Certificate
 ## 49                Certificate
 ## 50                    Diploma
@@ -2046,33 +2038,33 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 53           No Qualification
 ## 54 Postgraduate qualification
 ## 55 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">ABOVE_LEFT_borders &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1">ABOVE_LEFT_borders &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="below-right-border-example" class="section level2">
 <h2>BELOW RIGHT border example</h2>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">cells &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet, <span class="st">&quot;BELOW RIGHT border&quot;</span>)<span class="op">$</span>data[[<span class="dv">1</span>]]</a></code></pre></div>
-<pre><code>## Warning: 'tidy_xlsx()' is deprecated.
-## Use 'xlsx_cells()' or 'xlsx_formats()' instead.</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1">cells &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet, <span class="st">&quot;BELOW RIGHT border&quot;</span>)<span class="op">$</span>data[[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>## Warning: &#39;tidy_xlsx()&#39; is deprecated.
+## Use &#39;xlsx_cells()&#39; or &#39;xlsx_formats()&#39; instead.</code></pre>
 <div id="headers-5" class="section level3">
 <h3>Headers</h3>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># Same as BELOW RIGHT without borders</span></a>
-<a class="sourceLine" id="cb106-2" data-line-number="2">row_headers &lt;-</a>
-<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-6" data-line-number="6"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
-<a class="sourceLine" id="cb106-7" data-line-number="7">row_headers</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># Same as BELOW RIGHT without borders</span></a>
+<a class="sourceLine" id="cb100-2" title="2">row_headers &lt;-</a>
+<a class="sourceLine" id="cb100-3" title="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-5" title="5"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-6" title="6"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>col)</a>
+<a class="sourceLine" id="cb100-7" title="7">row_headers</a></code></pre></div>
 <pre><code>## $`10`
 ## # A tibble: 10 x 3
 ##      row   col header                    
 ##    &lt;int&gt; &lt;int&gt; &lt;chr&gt;                     
-##  1     4    10 Bachelor's degree         
+##  1     4    10 Bachelor&#39;s degree         
 ##  2     5    10 Certificate               
 ##  3     6    10 Diploma                   
 ##  4     7    10 No Qualification          
 ##  5     8    10 Postgraduate qualification
-##  6     9    10 Bachelor's degree         
+##  6     9    10 Bachelor&#39;s degree         
 ##  7    10    10 Certificate               
 ##  8    11    10 Diploma                   
 ##  9    12    10 No Qualification          
@@ -2084,12 +2076,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt; 
 ## 1     7    11 Female
 ## 2    10    11 Male</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">col_headers &lt;-</a>
-<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">14</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb108-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb108-5" data-line-number="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
-<a class="sourceLine" id="cb108-6" data-line-number="6">col_headers</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">col_headers &lt;-</a>
+<a class="sourceLine" id="cb102-2" title="2"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb102-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&gt;=</span><span class="st"> </span><span class="dv">14</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb102-4" title="4"><span class="st">  </span><span class="kw">select</span>(row, col, <span class="dt">header =</span> character) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb102-5" title="5"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>row)</a>
+<a class="sourceLine" id="cb102-6" title="6">col_headers</a></code></pre></div>
 <pre><code>## $`14`
 ## # A tibble: 6 x 3
 ##     row   col header 
@@ -2110,14 +2102,14 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="data-5" class="section level3">
 <h3>Data</h3>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># Same as BELOW RIGHT without borders</span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">data_cells &lt;-</a>
-<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">13</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">9</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">content =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(character), numeric, <span class="ot">NA</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(content)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
-<a class="sourceLine" id="cb110-8" data-line-number="8">data_cells</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="co"># Same as BELOW RIGHT without borders</span></a>
+<a class="sourceLine" id="cb104-2" title="2">data_cells &lt;-</a>
+<a class="sourceLine" id="cb104-3" title="3"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">&lt;=</span><span class="st"> </span><span class="dv">13</span>, col <span class="op">&lt;=</span><span class="st"> </span><span class="dv">9</span>, <span class="op">!</span>is_blank) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">content =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(character), numeric, <span class="ot">NA</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">as.integer</span>(content)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb104-7" title="7"><span class="st">  </span><span class="kw">select</span>(row, col, value)</a>
+<a class="sourceLine" id="cb104-8" title="8">data_cells</a></code></pre></div>
 <pre><code>## # A tibble: 55 x 3
 ##      row   col  value
 ##    &lt;int&gt; &lt;int&gt;  &lt;int&gt;
@@ -2131,39 +2123,39 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8     5     5  34000
 ##  9     5     6  30000
 ## 10     5     7 161000
-## # ... with 45 more rows</code></pre>
+## # … with 45 more rows</code></pre>
 </div>
 <div id="borders-1" class="section level3">
 <h3>Borders</h3>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co"># Different from BELOW RIGHT without borders</span></a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co"># Find cells with borders on the bottom, and ones with borders on the left</span></a>
-<a class="sourceLine" id="cb112-3" data-line-number="3">formatting &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet)<span class="op">$</span>formats</a></code></pre></div>
-<pre><code>## Warning: 'tidy_xlsx()' is deprecated.
-## Use 'xlsx_cells()' or 'xlsx_formats()' instead.</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">left_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>left<span class="op">$</span>style))</a>
-<a class="sourceLine" id="cb114-2" data-line-number="2">top_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>top<span class="op">$</span>style))</a>
-<a class="sourceLine" id="cb114-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb114-4" data-line-number="4">left_border_cells &lt;-</a>
-<a class="sourceLine" id="cb114-5" data-line-number="5"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(row <span class="op">==</span><span class="st"> </span><span class="dv">15</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>left_borders) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(row, col)</a>
-<a class="sourceLine" id="cb114-8" data-line-number="8">top_border_cells &lt;-</a>
-<a class="sourceLine" id="cb114-9" data-line-number="9"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-10" data-line-number="10"><span class="st">  </span><span class="kw">filter</span>(col <span class="op">==</span><span class="st"> </span><span class="dv">11</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>top_borders) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-11" data-line-number="11"><span class="st">  </span><span class="kw">select</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="co"># Different from BELOW RIGHT without borders</span></a>
+<a class="sourceLine" id="cb106-2" title="2"><span class="co"># Find cells with borders on the bottom, and ones with borders on the left</span></a>
+<a class="sourceLine" id="cb106-3" title="3">formatting &lt;-<span class="st"> </span><span class="kw">tidy_xlsx</span>(spreadsheet)<span class="op">$</span>formats</a></code></pre></div>
+<pre><code>## Warning: &#39;tidy_xlsx()&#39; is deprecated.
+## Use &#39;xlsx_cells()&#39; or &#39;xlsx_formats()&#39; instead.</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">left_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>left<span class="op">$</span>style))</a>
+<a class="sourceLine" id="cb108-2" title="2">top_borders &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(formatting<span class="op">$</span>local<span class="op">$</span>border<span class="op">$</span>top<span class="op">$</span>style))</a>
+<a class="sourceLine" id="cb108-3" title="3"></a>
+<a class="sourceLine" id="cb108-4" title="4">left_border_cells &lt;-</a>
+<a class="sourceLine" id="cb108-5" title="5"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(row <span class="op">==</span><span class="st"> </span><span class="dv">15</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>left_borders) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-7" title="7"><span class="st">  </span><span class="kw">select</span>(row, col)</a>
+<a class="sourceLine" id="cb108-8" title="8">top_border_cells &lt;-</a>
+<a class="sourceLine" id="cb108-9" title="9"><span class="st">  </span>cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(col <span class="op">==</span><span class="st"> </span><span class="dv">11</span>, local_format_id <span class="op">%in%</span><span class="st"> </span>top_borders) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-11" title="11"><span class="st">  </span><span class="kw">select</span>(row, col)</a></code></pre></div>
 </div>
 <div id="join-headers-to-data-6" class="section level3">
 <h3>Join headers to data</h3>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">data_cells &lt;-</a>
-<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;BELOW&quot;</span>, left_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from BELOW RIGHT</span></a>
-<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as BELOW RIGHT</span></a>
-<a class="sourceLine" id="cb115-5" data-line-number="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;RIGHT&quot;</span>, top_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from BELOW RIGHT</span></a>
-<a class="sourceLine" id="cb115-6" data-line-number="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>) <span class="co"># Same as BELOW RIGHT</span></a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">data_cells &lt;-</a>
+<a class="sourceLine" id="cb109-2" title="2"><span class="st">  </span>data_cells <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb109-3" title="3"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">2</span>]], <span class="st">&quot;BELOW&quot;</span>, left_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from BELOW RIGHT</span></a>
+<a class="sourceLine" id="cb109-4" title="4"><span class="st">  </span><span class="kw">enhead</span>(col_headers[[<span class="dv">1</span>]], <span class="st">&quot;S&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Same as BELOW RIGHT</span></a>
+<a class="sourceLine" id="cb109-5" title="5"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">2</span>]], <span class="st">&quot;RIGHT&quot;</span>, top_border_cells) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Different from BELOW RIGHT</span></a>
+<a class="sourceLine" id="cb109-6" title="6"><span class="st">  </span><span class="kw">enhead</span>(row_headers[[<span class="dv">1</span>]], <span class="st">&quot;E&quot;</span>) <span class="co"># Same as BELOW RIGHT</span></a></code></pre></div>
 </div>
 <div id="result-7" class="section level3">
 <h3>Result</h3>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">data_cells <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a></code></pre></div>
 <pre><code>##    row col  value header.data header.header header.data.data
 ## 1    4   4   7000       0 - 6       15 - 24           Female
 ## 2    4   5  12000       0 - 6       25 - 44           Female
@@ -2221,9 +2213,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 54  13   8  60000      7 - 10       25 - 44             Male
 ## 55  13   9  68000      7 - 10       45 - 64             Male
 ##          header.header.header
-## 1           Bachelor's degree
-## 2           Bachelor's degree
-## 3           Bachelor's degree
+## 1           Bachelor&#39;s degree
+## 2           Bachelor&#39;s degree
+## 3           Bachelor&#39;s degree
 ## 4                 Certificate
 ## 5                 Certificate
 ## 6                 Certificate
@@ -2234,9 +2226,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 11           No Qualification
 ## 12 Postgraduate qualification
 ## 13 Postgraduate qualification
-## 14          Bachelor's degree
-## 15          Bachelor's degree
-## 16          Bachelor's degree
+## 14          Bachelor&#39;s degree
+## 15          Bachelor&#39;s degree
+## 16          Bachelor&#39;s degree
 ## 17                Certificate
 ## 18                Certificate
 ## 19                Certificate
@@ -2249,8 +2241,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 26 Postgraduate qualification
 ## 27 Postgraduate qualification
 ## 28 Postgraduate qualification
-## 29          Bachelor's degree
-## 30          Bachelor's degree
+## 29          Bachelor&#39;s degree
+## 30          Bachelor&#39;s degree
 ## 31                Certificate
 ## 32                Certificate
 ## 33                Certificate
@@ -2262,9 +2254,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 39           No Qualification
 ## 40 Postgraduate qualification
 ## 41 Postgraduate qualification
-## 42          Bachelor's degree
-## 43          Bachelor's degree
-## 44          Bachelor's degree
+## 42          Bachelor&#39;s degree
+## 43          Bachelor&#39;s degree
+## 44          Bachelor&#39;s degree
 ## 45                Certificate
 ## 46                Certificate
 ## 47                Certificate
@@ -2276,16 +2268,16 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 53           No Qualification
 ## 54 Postgraduate qualification
 ## 55 Postgraduate qualification</code></pre>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">BELOW_RIGHT_borders &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">BELOW_RIGHT_borders &lt;-<span class="st"> </span>data_cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(row, col)</a></code></pre></div>
 </div>
 </div>
 <div id="check-that-all-sheets-are-parsed-correctly-2" class="section level2">
 <h2>Check that all sheets are parsed correctly</h2>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], BELOW_RIGHT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], BELOW_RIGHT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], ABOVE_LEFT_borders[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], ABOVE_LEFT_borders[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], BELOW_RIGHT_borders[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">identical</span>(ABOVE_LEFT[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>], BELOW_RIGHT_borders[, <span class="dv">-1</span><span class="op">:-</span><span class="dv">2</span>])</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 

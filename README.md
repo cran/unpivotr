@@ -56,13 +56,24 @@ More positive, corrective functions:
     into pieces that each contain one table. You can then unpivot each
     table in turn with `purrr::map()` or similar.
 
-## Getting started
+## Make cells tidy
 
-[Spreadsheet Munging
-Strategies](https://nacnudus.github.io/spreadsheet-munging-strategies)
-is a free, online cookbook using
-[tidyxl](https://github.com/nacnudus/tidyxl) and
-[unpivotr](https://github.com/nacnudus/unpivotr) (in progress).
+Unpivotr uses data where each cells is represented by one row in a
+dataframe. Like this.
+
+![Gif of tidyxl converting cells into a tidy representation of one row
+per cell](./vignettes/tidy_xlsx.gif)
+
+What can you do with tidy cells? The best places to start are:
+
+  - [Spreadsheet Munging
+    Strategies](https://nacnudus.github.io/spreadsheet-munging-strategies),
+    a free, online cookbook using
+    [tidyxl](https://github.com/nacnudus/tidyxl) and
+    [unpivotr](https://github.com/nacnudus/unpivotr)
+  - [Screencasts](https://www.youtube.com/watch?v=1sinC7wsS5U) on
+    YouTube.
+  - [Worked examples](https://github.com/nacnudus/ukfarm) on GitHub.
 
 Otherwise the basic idea is:
 
@@ -74,8 +85,8 @@ Otherwise the basic idea is:
         install a pull-request on that package with
         `devtools::install_github("tidyverse/readr#760")`.
       - For tables in html pages, use `unpivotr::tidy_html()`
-      - For data frames, use `unpivotr::tidy_table()` – this should be a
-        last resort, because by the time thee data is in a conventional
+      - For data frames, use `unpivotr::as_cells()` – this should be a
+        last resort, because by the time the data is in a conventional
         data frame, it is often too late – formatting has been lost, and
         most data types have been coerced to strings.
 2.  Either `behead()` straight away, else `dplyr::filter()` separately
@@ -88,6 +99,14 @@ Otherwise the basic idea is:
 ``` r
 library(unpivotr)
 library(tidyverse)
+#> ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 3.1.0           ✔ purrr   0.2.5.9000 
+#> ✔ tibble  1.4.99.9006     ✔ dplyr   0.7.8      
+#> ✔ tidyr   0.8.2           ✔ stringr 1.3.1      
+#> ✔ readr   1.2.1.9000      ✔ forcats 0.3.0
+#> ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
 x <- purpose$`NNW WNW`
 x # A pivot table in a conventional data frame.  Four levels of headers, in two
 #>                            X2      X3     X4     X5    X6     X7
@@ -115,8 +134,7 @@ x # A pivot table in a conventional data frame.  Four levels of headers, in two
 #> 22                       <NA>     65+   <NA>  13000  <NA>  18000
   # rows and two columns.
 
-y <- tidy_table(x) # 'Tokenize' or 'melt' the data frame into one row per cell
-#> tidy_table() will be deprecated.  Use as_cells() instead.
+y <- as_cells(x) # 'Tokenize' or 'melt' the data frame into one row per cell
 y
 #> # A tibble: 132 x 4
 #>      row   col data_type chr              
@@ -131,7 +149,7 @@ y
 #>  8     8     1 chr       <NA>             
 #>  9     9     1 chr       <NA>             
 #> 10    10     1 chr       <NA>             
-#> # ... with 122 more rows
+#> # … with 122 more rows
 
 rectify(y) # useful for reviewing the melted form as though in a spreadsheet
 #> # A tibble: 22 x 7
@@ -147,7 +165,7 @@ rectify(y) # useful for reviewing the melted form as though in a spreadsheet
 #>  8         8 <NA>              25 - 44 34000  179000 31000  219000
 #>  9         9 <NA>              45 - 64 30000  210000 23000  199000
 #> 10        10 <NA>              65+     12000  77000  8000   107000
-#> # ... with 12 more rows
+#> # … with 12 more rows
 
 y %>%
   behead("NNW", "sex") %>%               # Strip headers
@@ -169,7 +187,7 @@ y %>%
 #>  8  18000 Female 7 - 10               Bachelor's degree 65+       
 #>  9     NA Male   0 - 6                Bachelor's degree 15 - 24   
 #> 10   9000 Male   0 - 6                Bachelor's degree 25 - 44   
-#> # ... with 70 more rows
+#> # … with 70 more rows
 ```
 
 Note the compass directions in the code above, which hint to `behead()`
@@ -192,10 +210,13 @@ where to find the header cell for each data cell.
 devtools::install_github("nacnudus/unpivotr", build_vignettes = TRUE)
 ```
 
-Don’t use the CRAN version – it has none of the fun in this README, and
-the development version breaks everything. Please let me know if this is
-a problem for you — as far as I know, nobody really used the old
-version, but it’s hard to tell.
+The version 0.4.0 release had somee breaking changes. See `NEWS.md` for
+details. The previous version can be installed as
+follow:
+
+``` r
+devtools::install_version("unpivotr", version = "0.3.1", repos = "http://cran.us.r-project.org")
+```
 
 ## Similar projects
 

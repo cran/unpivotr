@@ -15,7 +15,7 @@ path <- system.file("extdata/enron.xlsx", package = "unpivotr")
 ## ------------------------------------------------------------------------
 cells <-
   xlsx_cells(path) %>%
-  filter(!is_blank, between(row, 14L, 56L), col <= 20) %>%
+  dplyr::filter(!is_blank, between(row, 14L, 56L), col <= 20) %>%
   select(row, col, data_type, numeric, character, date)
 
 ## ---- eval = FALSE-------------------------------------------------------
@@ -23,7 +23,7 @@ cells <-
 
 ## ------------------------------------------------------------------------
 title <-
-  filter(cells, character == "Fixed Price") %>%
+  dplyr::filter(cells, character == "Fixed Price") %>%
   select(row, col) %>%
   mutate(row = row - 1L) %>%
   inner_join(cells, by = c("row", "col"))
@@ -51,7 +51,7 @@ unpivoted
 ## ------------------------------------------------------------------------
 row_headers <-
   cells %>%
-  filter(between(row, 17, 56), between(col, 2, 4)) %>%
+  dplyr::filter(between(row, 17, 56), between(col, 2, 4)) %>%
   # Concatenate rows like "Dec-01", "to", "Mar-02"
   mutate(character = ifelse(!is.na(character),
                             character,
@@ -76,11 +76,11 @@ unpivoted
 #  
 #  cells <-
 #    xlsx_cells(system.file("extdata/enron.xlsx", package = "unpivotr")) %>%
-#    filter(!is_blank, between(row, 14L, 56L), col <= 20) %>%
+#    dplyr::filter(!is_blank, between(row, 14L, 56L), col <= 20) %>%
 #    select(row, col, data_type, numeric, character, date)
 #  
 #  row_headers <-
-#    filter(cells, between(row, 17, 56), between(col, 2, 4)) %>%
+#    dplyr::filter(cells, between(row, 17, 56), between(col, 2, 4)) %>%
 #    mutate(character = ifelse(!is.na(character),
 #                              character,
 #                              format(date, origin="1899-12-30", "%b-%y"))) %>%
@@ -93,7 +93,7 @@ unpivoted
 #    select(row, row_header)
 #  
 #  titles <-
-#    filter(cells, character == "Fixed Price") %>%
+#    dplyr::filter(cells, character == "Fixed Price") %>%
 #    select(row, col) %>%
 #    mutate(row = row - 1L) %>%
 #    inner_join(cells, by = c("row", "col"))

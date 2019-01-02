@@ -1,3 +1,20 @@
+# unpivotr 0.5.0
+
+## New features
+
+* `behead_if()` is for tiered headers within the same row or column.  It takes
+    filter functions similarly to `dplyr::filter()` to decide which cells to
+    treat as headers, and can be applied more than once to the same row or
+    column of headers until every tier has been dealt with.
+* `merge_rows()` and `merge_cols()` combines header text when it is split over
+    multiple cells.
+
+## Other changes
+
+* `behead()`, `enhead()`, `partition()` and `rectify()` give a more informative
+    error message for non-distinct cells, for example when trying to pass cells
+    from more than one sheet to these functions (@gregrs-uk, #15).
+
 # unpivotr 0.4.0
 
 This version makes some big breaking changes for the sake of a more intuitive
@@ -52,7 +69,7 @@ devtools::install_version("unpivotr", version = "0.3.1", repos = "http://cran.us
 * `isolate_sentinels()` move sentinel values into a separate column, leaving
     `NA` behind (or `NULL` for list-columns).
 * `spatter()` is like `tidyr::spread()`, but preserves mixed data types.
-* `enhead()` (formerly `tidy_table()`) now returns a `data_type` column that
+* `enhead()` (formerly `join_header()`) now returns a `data_type` column that
     names the column that contains the value of a cell, similar to
     `tidyxl::xlsx_cells()`.
 * `enhead()` (formerly `join_header()` now follows the tidyverse convention of
