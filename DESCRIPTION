@@ -1,6 +1,6 @@
 Package: unpivotr
 Title: Unpivot Complex and Irregular Data Layouts
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: c(
     person("Duncan", "Garmonsway", email = "nacnudus@gmail.com", role = c("aut", "cre"))
     )
@@ -15,7 +15,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: methods, rlang, magrittr, dplyr, forcats, purrr, tidyr,
-        pillar, tibble, cellranger, xml2
+        pillar, tibble (>= 2.1.1), cellranger, xml2, tidyselect
 URL: https://github.com/nacnudus/unpivotr
 BugReports: https://github.com/nacnudus/unpivotr/issues
 RoxygenNote: 6.1.1
@@ -23,8 +23,8 @@ Suggests: knitr, rmarkdown, readr, tidyxl, readxl, stringr, htmltools,
         rvest, selectr, DT, testthat, covr
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-01-02 09:44:27 UTC; nacnudus
+Packaged: 2019-03-30 18:49:36 UTC; nacnudus
 Author: Duncan Garmonsway [aut, cre]
 Maintainer: Duncan Garmonsway <nacnudus@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-01-02 10:00:03 UTC
+Date/Publication: 2019-03-30 19:10:03 UTC
