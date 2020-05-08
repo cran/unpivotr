@@ -2,8 +2,6 @@
 #' @export
 magrittr::`%>%`
 
-#' @import tidyr
-
 #' @importFrom methods is
 #' @importFrom utils View installed.packages
 
@@ -12,7 +10,7 @@ magrittr::`%>%`
 
 NULL
 
-globalVariables(c(
+utils::globalVariables(c(
   ".",
   "inner_join",
   "mutate",
@@ -83,7 +81,7 @@ concatenate <- function(..., combine_factors = TRUE, fill_factor_na = TRUE) {
       # c() omits NULLs, so replace them with NA, which c() will promote when
       # necessary.
       dots[dots_is_null] <- NA
-      dots <- do.call(c, dots)
+      dots <- do.call(c, c(dots, use.names = FALSE))
       # c() demotes dates etc. when the first element is NA, so replace the
       # classes.
       class(dots) <- all_classes
@@ -102,7 +100,7 @@ concatenate <- function(..., combine_factors = TRUE, fill_factor_na = TRUE) {
   dots[dates] <- purrr::map(dots[dates], format, justify = "none", trim = TRUE)
   # Finally go with c()'s default homegnising of remaining classes.  Don't use
   # purrr::flatten(), because it strips classes from dates.
-  do.call(c, dots)
+  do.call(c, c(dots, use.names = FALSE))
 }
 
 # Return an NA of the same type as the given vector
@@ -121,4 +119,24 @@ maybe_format_list_element <- function(x, name, functions) {
   func <- functions[[name]]
   if (is.null(func)) func <- identity
   func(x)
+}
+
+# Standardise dialects of directions
+standardise_direction <- function(direction) {
+  stopifnot(length(direction) == 1L)
+  dictionary <-
+    c(`up-left` = "up-left", `up` = "up", `up-right` = "up-right",
+      `right-up` = "right-up", `right` = "right", `right-down` = "right-down",
+      `down-right` = "down-right", `down` = "down", `down-left` = "down-left",
+      `left-down` = "left-down", `left` = "left", `left-up` = "left-up",
+      `up-ish` = "up-ish", `right-ish` = "right-ish",
+      `down-ish` = "down-ish", `left-ish` = "left-ish",
+      NNW = "up-left", N = "up", NNE = "up-right",
+      ENE = "right-up", E = "right", ESE = "right-down",
+      SSE = "down-right", S = "down", SSW = "down-left",
+      WSW = "left-down", W = "left", WNW = "left-up",
+      ABOVE = "up-ish", RIGHT = "right-ish",
+      BELOW = "down-ish", LEFT = "left-ish")
+  if (direction %in% names(dictionary)) return(unname(dictionary[direction]))
+  stop("The direction \"", direction, "\" is not recognised.  See ?directions.")
 }
