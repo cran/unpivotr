@@ -1,6 +1,6 @@
 Package: unpivotr
 Title: Unpivot Complex and Irregular Data Layouts
-Version: 0.6.1
+Version: 0.6.2
 Authors@R: c(
     person("Duncan", "Garmonsway", email = "nacnudus@gmail.com", role = c("aut", "cre"))
     )
@@ -23,8 +23,8 @@ Suggests: knitr, rmarkdown, readr, tidyxl, readxl, stringr, htmltools,
         rvest, selectr, DT, testthat, covr, here
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-08-03 20:23:49 UTC; nacnudus
+Packaged: 2021-08-21 20:24:12 UTC; nacnudus
 Author: Duncan Garmonsway [aut, cre]
 Maintainer: Duncan Garmonsway <nacnudus@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-08-03 22:50:02 UTC
+Date/Publication: 2021-08-22 04:10:02 UTC
