@@ -105,6 +105,27 @@ behead <- function(cells, direction, name, values = NULL, types = data_type,
 }
 
 #' @export
+behead.grouped_df <- function(cells, direction, name, values = NULL,
+                              types = data_type, formatters = list(),
+                              drop_na = TRUE) {
+  # Remember the grouping variables
+  grouping_variables <- dplyr::group_vars(cells)
+  cells %>%
+    dplyr::group_split() %>%
+    purrr::map_dfr(
+      behead,
+      direction = direction,
+      name = !!rlang::ensym(name),
+      values = !!rlang::enexpr(values),
+      types = !!rlang::ensym(types),
+      formatters = formatters,
+      drop_na = drop_na
+    ) %>%
+    # Restore the grouping variables
+    dplyr::group_by(!!!rlang::syms(grouping_variables))
+}
+
+#' @export
 behead.data.frame <- function(cells, direction, name, values = NULL,
                               types = data_type, formatters = list(),
                               drop_na = TRUE) {
@@ -113,7 +134,8 @@ behead.data.frame <- function(cells, direction, name, values = NULL,
     name = !!rlang::ensym(name),
     values = !!rlang::enexpr(values),
     types = !!rlang::ensym(types),
-    formatters = formatters, drop_na = drop_na
+    formatters = formatters,
+    drop_na = drop_na
   )
 }
 
@@ -181,11 +203,12 @@ behead_if.data.frame <- function(cells, ..., direction, name, values = NULL,
 # Construct a filter expression for stripping a header from a pivot table
 direction_filter <- function(direction) {
   direction <- substr(direction, 1L, 1L)
-  dplyr::case_when(
-    direction == "u" ~ rlang::expr(.data$row == min(.data$row)),
-    direction == "r" ~ rlang::expr(.data$col == max(.data$col)),
-    direction == "d" ~ rlang::expr(.data$row == max(.data$row)),
-    direction == "l" ~ rlang::expr(.data$col == min(.data$col))
+  switch(
+    direction,
+    u = rlang::expr(.data$row == min(.data$row)),
+    r = rlang::expr(.data$col == max(.data$col)),
+    d = rlang::expr(.data$row == max(.data$row)),
+    l = rlang::expr(.data$col == min(.data$col))
   )
 }
 

@@ -1,3 +1,10 @@
+# unpivotr 0.6.3
+
+* Make compatible with dplyr v1.1.0 (#58 @DavisVaughan)
+* Implement `as_cells.matrix()` (#52 @billdenney)
+* Allow behead() to work on grouped data (#46 @billdenney)
+* Add as_cells.matrix (#41 @billdenney)
+
 # unpivotr 0.6.2
 
 * Fix for upstream changes in rlang (#49 thanks @lionel-)
