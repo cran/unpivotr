@@ -1,10 +1,10 @@
-## ---- echo = TRUE-------------------------------------------------------------
+## ----echo = TRUE--------------------------------------------------------------
 library(dplyr)
 library(rvest)
 library(htmltools)
 library(unpivotr)
 
-## ---- echo = TRUE-------------------------------------------------------------
+## ----echo = TRUE--------------------------------------------------------------
 rowspan <- system.file("extdata", "rowspan.html", package = "unpivotr")
 includeHTML(rowspan)
 
@@ -18,7 +18,7 @@ rowspan %>%
   read_html() %>%
   as_cells()
 
-## ---- echo = TRUE-------------------------------------------------------------
+## ----echo = TRUE--------------------------------------------------------------
 colspan <- system.file("extdata", "colspan.html", package = "unpivotr")
 includeHTML(colspan)
 
@@ -32,7 +32,7 @@ colspan %>%
   read_html() %>%
   as_cells()
 
-## ---- echo = TRUE-------------------------------------------------------------
+## ----echo = TRUE--------------------------------------------------------------
 rowandcolspan <- system.file("extdata",
                              "row-and-colspan.html",
                              package = "unpivotr")
@@ -48,7 +48,7 @@ rowandcolspan %>%
   read_html() %>%
   as_cells()
 
-## ---- echo = TRUE-------------------------------------------------------------
+## ----echo = TRUE--------------------------------------------------------------
 nested <- system.file("extdata", "nested.html", package = "unpivotr")
 includeHTML(nested)
 
@@ -77,7 +77,7 @@ cell %>%
   read_html() %>%
   as_cells()
 
-## ---- echo = TRUE-------------------------------------------------------------
+## ----echo = TRUE--------------------------------------------------------------
 urls <- system.file("extdata", "url.html", package = "unpivotr")
 includeHTML(urls)
 

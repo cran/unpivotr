@@ -1,4 +1,4 @@
-## ---- out.width = "850px"-----------------------------------------------------
+## ----out.width = "850px"------------------------------------------------------
 knitr::include_graphics("enron-screenshot.png")
 
 ## -----------------------------------------------------------------------------
@@ -18,7 +18,7 @@ cells <-
   dplyr::filter(!is_blank, between(row, 14L, 56L), col <= 20) %>%
   select(row, col, data_type, numeric, character, date)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  formatting <- xlsx_formats(path)
 
 ## -----------------------------------------------------------------------------
@@ -66,7 +66,7 @@ row_headers <-
 unpivoted <- left_join(unpivoted, row_headers, by = "row")
 unpivoted
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  library(unpivotr)
 #  library(tidyxl)
 #  library(dplyr)

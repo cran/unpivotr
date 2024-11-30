@@ -12,7 +12,7 @@
 
 <meta name="author" content="Duncan Garmonsway" />
 
-<meta name="date" content="2023-01-22" />
+<meta name="date" content="2024-11-30" />
 
 <title>HTML Tables</title>
 
@@ -51,7 +51,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -62,7 +62,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">HTML Tables</h1>
 <h4 class="author">Duncan Garmonsway</h4>
-<h4 class="date">2023-01-22</h4>
+<h4 class="date">2024-11-30</h4>
 
 
 <div id="TOC">
@@ -362,7 +362,7 @@ example</a></li>
 demonstrates unpivoting html tables of various kinds.</p>
 <p>The HTML files are in the package directory at
 <code>system.file(&quot;extdata&quot;, c(&quot;rowspan.html&quot;, &quot;colspan.html&quot;, &quot;nested.html&quot;), package = &quot;unpivotr&quot;)</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -371,9 +371,9 @@ demonstrates unpivoting html tables of various kinds.</p>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(unpivotr)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">library</span>(unpivotr)</span></code></pre></div>
 <div id="rowspan-and-colspan-examples" class="section level2">
 <h2>Rowspan and colspan examples</h2>
 <p>If a table has cells merged across rows or columns (or both), then
@@ -384,8 +384,8 @@ be square, then <code>as_cells()</code> pads the missing cells with
 blanks.</p>
 <div id="rowspan" class="section level3">
 <h3>Rowspan</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rowspan <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;rowspan.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">includeHTML</span>(rowspan)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>rowspan <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;rowspan.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">includeHTML</span>(rowspan)</span></code></pre></div>
 <!DOCTYPE html>
 <html>
   <head>
@@ -414,19 +414,19 @@ padding: 10px;
   </body>
 </html>
 <br />
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rvest</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rowspan <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># rvest</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>rowspan <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="fu">html_table</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 1 × 2
 ##   `Header (1:2, 1)` `Header (1, 2)`
 ##   &lt;chr&gt;             &lt;chr&gt;          
 ## 1 Header (1:2, 1)   cell (2, 2)</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unpivotr</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rowspan <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># unpivotr</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>rowspan <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 4 × 4
 ##     row   col data_type html                                    
@@ -438,8 +438,8 @@ padding: 10px;
 </div>
 <div id="colspan" class="section level3">
 <h3>Colspan</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>colspan <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;colspan.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">includeHTML</span>(colspan)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>colspan <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;colspan.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">includeHTML</span>(colspan)</span></code></pre></div>
 <!DOCTYPE html>
 <html>
   <head>
@@ -469,19 +469,19 @@ padding: 10px;
 </html>
 <div></div>
   <br />
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rvest</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>colspan <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># rvest</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>colspan <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="fu">html_table</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 1 × 2
 ##   `Header (1, 1:2)` `Header (1, 1:2)`
 ##   &lt;chr&gt;             &lt;chr&gt;            
 ## 1 cell (2, 1)       cell (2, 2)</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unpivotr</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>colspan <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># unpivotr</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>colspan <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 4 × 4
 ##     row   col data_type html                                    
@@ -493,10 +493,10 @@ padding: 10px;
 </div>
 <div id="both-rowspan-and-colspan-non-square" class="section level3">
 <h3>Both rowspan and colspan: non-square</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rowandcolspan <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;row-and-colspan.html&quot;</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">includeHTML</span>(rowandcolspan)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>rowandcolspan <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>                             <span class="st">&quot;row-and-colspan.html&quot;</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                             <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="fu">includeHTML</span>(rowandcolspan)</span></code></pre></div>
 <!DOCTYPE html>
 <html>
   <head>
@@ -527,19 +527,19 @@ padding: 10px;
   </body>
 </html>
 <br />
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rvest</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>rowandcolspan <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># rvest</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>rowandcolspan <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">html_table</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 1 × 5
 ##   `Header (1:2, 1:2)` `Header (1:2, 1:2)` `Header (2, 3)` ``          ``        
 ##   &lt;chr&gt;               &lt;chr&gt;               &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;     
 ## 1 Header (1:2, 1:2)   Header (1:2, 1:2)   cell (3, 1)     cell (3, 2) cell (3, …</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unpivotr</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>rowandcolspan <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># unpivotr</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>rowandcolspan <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 10 × 4
 ##      row   col data_type html                                                   
@@ -561,8 +561,8 @@ padding: 10px;
 <p><code>as_cells()</code> never descends into cells. If there is a
 table inside a cell, then to parse that table use
 <code>html_table</code> again on that cell.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nested <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;nested.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">includeHTML</span>(nested)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>nested <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;nested.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">includeHTML</span>(nested)</span></code></pre></div>
 <!DOCTYPE html>
 <html>
   <head>
@@ -603,10 +603,10 @@ padding: 10px;
   </body>
 </html>
 <br />
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rvest parses both tables</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nested <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># rvest parses both tables</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>nested <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 3 × 6
 ##   `Header (1, 1)`     `Header (1, 2)`                    ``    ``    ``    ``   
@@ -620,13 +620,13 @@ padding: 10px;
 ##   `Header (2, 2)(1, 1)` `Header (2, 2)(1, 2)`
 ##   &lt;chr&gt;                 &lt;chr&gt;                
 ## 1 cell (2, 2)(2, 1)     cell (2, 2)(2, 1)</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unpivotr</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  nested <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_cells</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  .[[<span class="dv">1</span>]]</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># unpivotr</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>x <span class="ot">&lt;-</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  nested <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>  <span class="fu">as_cells</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>  .[[<span class="dv">1</span>]]</span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 4
 ##     row   col data_type html                                                    
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;                                                   
@@ -634,17 +634,17 @@ padding: 10px;
 ## 2     2     1 html      &quot;&lt;td&gt;cell (2, 1)&lt;/td&gt;&quot;                                  
 ## 3     1     2 html      &quot;&lt;th&gt;Header (1, 2)&lt;/th&gt;&quot;                                
 ## 4     2     2 html      &quot;&lt;td&gt;\n          &lt;table&gt;\n&lt;tr&gt;\n&lt;th&gt;Header (2, 2)(1, 1)…</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The html of the table inside a cell</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>cell <span class="ot">&lt;-</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(row <span class="sc">==</span> <span class="dv">2</span>, col <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>html</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>cell</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># The html of the table inside a cell</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>cell <span class="ot">&lt;-</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(row <span class="sc">==</span> <span class="dv">2</span>, col <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>  .<span class="sc">$</span>html</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>cell</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;td&gt;\n          &lt;table&gt;\n&lt;tr&gt;\n&lt;th&gt;Header (2, 2)(1, 1)&lt;/th&gt;\n              &lt;th&gt;Header (2, 2)(1, 2)&lt;/th&gt;\n            &lt;/tr&gt;\n&lt;tr&gt;\n&lt;td&gt;cell (2, 2)(2, 1)&lt;/td&gt;\n              &lt;td&gt;cell (2, 2)(2, 1)&lt;/td&gt;\n            &lt;/tr&gt;\n&lt;/table&gt;\n&lt;/td&gt;&quot;</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parsing the table inside the cell</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>cell <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># Parsing the table inside the cell</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>cell <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>  <span class="fu">as_cells</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 4 × 4
 ##     row   col data_type html                        
@@ -660,8 +660,8 @@ padding: 10px;
 extracts more than just text – it can extract whatever part of the HTML
 you need.</p>
 <p>Here, we extract URLs.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>urls <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;url.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">includeHTML</span>(urls)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>urls <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;url.html&quot;</span>, <span class="at">package =</span> <span class="st">&quot;unpivotr&quot;</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">includeHTML</span>(urls)</span></code></pre></div>
 <!DOCTYPE html>
 <html>
   <head>
@@ -691,31 +691,31 @@ padding: 10px;
   </body>
 </html>
 <br />
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cell_url <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(x)) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    read_html <span class="sc">%&gt;%</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_nodes</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>cell_text <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(x)) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    read_html <span class="sc">%&gt;%</span></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_nodes</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>()</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>urls <span class="sc">%&gt;%</span></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_cells</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">text =</span> purrr<span class="sc">::</span><span class="fu">map</span>(html, cell_text),</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">url =</span> purrr<span class="sc">::</span><span class="fu">map</span>(html, cell_url)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">unnest</span>(text, url)</span></code></pre></div>
-<pre><code>## Warning: unnest() has a new interface. See ?unnest for details.
-## Try `df %&gt;% unnest(c(text, url))`, with `mutate()` if needed</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>cell_url <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(x)) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>    read_html <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>    <span class="fu">html_nodes</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>    <span class="fu">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>}</span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>cell_text <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(x)) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>    read_html <span class="sc">%&gt;%</span></span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>    <span class="fu">html_nodes</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>    <span class="fu">html_text</span>()</span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a>}</span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a>urls <span class="sc">%&gt;%</span></span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>  <span class="fu">as_cells</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a>  .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span></span>
+<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">text =</span> purrr<span class="sc">::</span><span class="fu">map</span>(html, cell_text),</span>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a>         <span class="at">url =</span> purrr<span class="sc">::</span><span class="fu">map</span>(html, cell_url)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-23"><a href="#cb31-23" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">unnest</span>(text, url)</span></code></pre></div>
+<pre><code>## Warning: `unnest()` has a new interface. See `?unnest` for details.
+## ℹ Try `df %&gt;% unnest(c(text, url))`, with `mutate()` if needed.</code></pre>
 <pre><code>## # A tibble: 8 × 6
 ##     row   col data_type html                                         text  url  
 ##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;                                        &lt;chr&gt; &lt;chr&gt;
